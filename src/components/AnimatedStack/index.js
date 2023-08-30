@@ -1,4 +1,3 @@
-import 'react-native-gesture-handler';
 import React, {useState, useEffect} from "react";
 import {StyleSheet, View, useWindowDimensions} from "react-native";
 import Animated, {
@@ -8,7 +7,7 @@ import Animated, {
     useAnimatedGestureHandler,
     interpolate, withSpring, runOnJS
 } from "react-native-reanimated";
-import {GestureHandlerRootView, PanGestureHandler} from "react-native-gesture-handler";
+import {PanGestureHandler} from "react-native-gesture-handler";
 
 import Like from "../../../assets/images/LIKE.png";
 import Nope from "../../../assets/images/nope.png";
@@ -105,7 +104,7 @@ const AnimatedStack = (props) => {
 
 
     return (
-        <GestureHandlerRootView style={styles.root}>
+        <View style={styles.root}>
             {nextProfile && (
                 <View style={styles.nextCardContainer}>
                     <Animated.View style={[styles.animatedCard, nextCardStyle]}>
@@ -123,7 +122,7 @@ const AnimatedStack = (props) => {
                     </Animated.View>
                 </PanGestureHandler>
             )}
-        </GestureHandlerRootView>
+        </View>
     )
 }
 
@@ -152,7 +151,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 10,
         zIndex: 1,
-        elevation: 1
+        // elevation: 1   // maybe on ios or android?
     }
 })
 
