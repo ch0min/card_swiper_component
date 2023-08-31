@@ -23,16 +23,16 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         borderRadius: 10,
-        backgroundColor: "#FEFEFE",
+        backgroundColor: "#fff",
 
-        shadowColor: "#000",
-        shadowOffset: { // for ios
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 0.36,
-        shadowRadius: 6.68,
-        elevation: 11
+        // shadowColor: "#ff0000",   // for ios
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 5,
+        // },
+        // shadowOpacity: 1,
+        // shadowRadius: 10,
+        elevation: 10
     },
     image: {
         width: "100%",
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     cardInner: {
-        padding: 10,
+        padding: 10
     },
     name: {
         fontSize: 30,

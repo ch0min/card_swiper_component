@@ -9,8 +9,8 @@ import Animated, {
 } from "react-native-reanimated";
 import {PanGestureHandler} from "react-native-gesture-handler";
 
-import Like from "../../../assets/images/LIKE.png";
-import Nope from "../../../assets/images/nope.png";
+import Like from "../../assets/images/LIKE.png";
+import Nope from "../../assets/images/nope.png";
 
 
 const ROTATION = 60
@@ -24,7 +24,6 @@ const AnimatedStack = (props) => {
 
     const currentProfile = data[currentIndex]
     const nextProfile = data[nextIndex]
-
 
     const {width: screenWidth} = useWindowDimensions()
     const hiddenTranslateX = 2 * screenWidth
@@ -49,12 +48,13 @@ const AnimatedStack = (props) => {
             {
                 scale: interpolate(translateX.value,
                     [-hiddenTranslateX, 0, hiddenTranslateX],
-                    [1, 0.8, 1])
+                    [1, 0.8, 1]),
             }
         ],
         opacity: interpolate(translateX.value,
             [-hiddenTranslateX, 0, hiddenTranslateX],
-            [1, 0.5, 1])
+            [1, 0.5, 1]),
+
     }))
 
     const likeStyle = useAnimatedStyle(() => ({
@@ -86,11 +86,6 @@ const AnimatedStack = (props) => {
                 () => runOnJS(setCurrentIndex)(currentIndex + 1)
             )
 
-            // translateX.value = withSpring(hiddenTranslateX * Math.sign(event.velocityX),
-            //     {},
-            //     () => runOnJS(setCurrentIndex)(currentIndex + 1)
-            // )
-
             const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft
             onSwipe && runOnJS(onSwipe)(currentProfile)
 
@@ -104,9 +99,9 @@ const AnimatedStack = (props) => {
 
 
     return (
-        <View style={styles.root}>
+        <View style={styles.root} >
             {nextProfile && (
-                <View style={styles.nextCardContainer}>
+                <View style={styles.nextCardContainer} >
                     <Animated.View style={[styles.animatedCard, nextCardStyle]}>
                         {renderItem({item: nextProfile})}
                     </Animated.View>
