@@ -143,8 +143,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     labels: {
-        width: 150,
-        height: 150,
+        width: 125,
+        height: 125,
         resizeMode: "contain",
         position: "absolute",
         top: 10,

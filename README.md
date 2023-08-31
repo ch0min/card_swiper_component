@@ -11,3 +11,4 @@ TODO:
 - fix small white border when swiping on cards
 - implement card stack or not?
 - Tapping on a card, shows info
+- on back card use PanGestureHandler so you can scroll down if the description is more than the card.
