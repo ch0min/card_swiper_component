@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {StyleSheet, View, useWindowDimensions} from "react-native";
+import {StyleSheet, View, Text, useWindowDimensions} from "react-native";
 import Animated, {
     useSharedValue,
     useAnimatedStyle,
@@ -12,15 +12,15 @@ import {PanGestureHandler} from "react-native-gesture-handler";
 import Like from "../../assets/images/LIKE.png";
 import Nope from "../../assets/images/nope.png";
 
-
 const ROTATION = 60
-const SWIPE_VELOCITY = 800
+const SWIPE_VELOCITY = 1200
 
 const AnimatedStack = (props) => {
     const {data, renderItem, onSwipeLeft, onSwipeRight} = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const [nextIndex, setNextIndex] = useState(currentIndex + 1)
+
 
     const currentProfile = data[currentIndex]
     const nextProfile = data[nextIndex]
@@ -99,7 +99,8 @@ const AnimatedStack = (props) => {
 
 
     return (
-        <View style={styles.root}>
+        <View style={styles.container}>
+
             {nextProfile && (
                 <View style={styles.nextCardContainer}>
                     <Animated.View style={[styles.animatedCard, nextCardStyle]}>
@@ -117,12 +118,14 @@ const AnimatedStack = (props) => {
                     </Animated.View>
                 </PanGestureHandler>
             )}
+
+
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    root: {
+    container: {
         justifyContent: "center",
         alignItems: "center",
         flex: 1,
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
     },
     animatedCard: {
         width: "85%",
-        height: "70%",
+        height: "65%",
         justifyContent: "center",
         alignItems: "center",
     },

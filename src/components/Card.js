@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     cardInner: {
-        padding: 40,
+        padding: 30,
         alignItems: "center",
         backgroundColor: "#fff"
     },

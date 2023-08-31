@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#fff",
         alignItems: "center",
+        zIndex: 1
     }
 })
 
