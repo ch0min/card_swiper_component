@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, View} from "react-native";
+import {StyleSheet, View, Text} from "react-native";
 
 import users from "../../assets/data/users";
 import Card from "../components/Card";
@@ -16,6 +16,7 @@ const SwipeScreen = () => {
 
     return (
         <View style={styles.pageContainer}>
+            <Text style={styles.heading}>What's on your mind</Text>
             <AnimatedStack
                 data={users}
                 renderItem={({item}) => <Card user={item} />}
@@ -32,7 +33,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flex: 1,
         width: "100%",
-        backgroundColor: "#5ba970"
+        backgroundColor: "#5ba970",
+    },
+    heading: {
+        position: "absolute",
+        top: "10%",
+        fontSize: 24,
+        fontWeight: "bold",
+        color: "#fff",
+        alignItems: "center",
     }
 })
 

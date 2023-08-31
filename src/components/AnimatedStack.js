@@ -99,9 +99,9 @@ const AnimatedStack = (props) => {
 
 
     return (
-        <View style={styles.root} >
+        <View style={styles.root}>
             {nextProfile && (
-                <View style={styles.nextCardContainer} >
+                <View style={styles.nextCardContainer}>
                     <Animated.View style={[styles.animatedCard, nextCardStyle]}>
                         {renderItem({item: nextProfile})}
                     </Animated.View>

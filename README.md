@@ -9,3 +9,4 @@ TODO:
 - fix so that you can swipe instantly after the next card
 - make a new view on the card, so it has 2 sections
 - fix small white border when swiping on cards
+- make cards stack

@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     card: {
         width: "100%",
         height: "100%",
-        borderRadius: 10,
-        backgroundColor: "#fff",
+        borderRadius: 20,
+        backgroundColor: "#5ba970",
 
         // shadowColor: "#ff0000",   // for ios
         // shadowOffset: {
@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
         // },
         // shadowOpacity: 1,
         // shadowRadius: 10,
-        // elevation: 10
+        // elevation: 10    // causing problems for nextCard
     },
     image: {
         width: "100%",
         height: "100%",
-        borderRadius: 10,
+        borderRadius: 20,
         overflow: "hidden",
 
         justifyContent: "flex-end",
@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 30,
-        color: "white",
+        color: "#000",
         fontWeight: "bold"
     },
     bio: {
         fontSize: 18,
-        color: "white",
-        lineHeight: 25
+        color: "#6a6a6a",
+        lineHeight: 25,
     }
 })
 
