@@ -3,7 +3,7 @@ import {StyleSheet, View, Text, ImageBackground} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 
 const Card = (props) => {
-    const {name, image, bio, desc} = props.user
+    const {name, image, bio, desc, age} = props.user
 
     const [isCardFlipped, setIsCardFlipped] = useState(false)
 
@@ -21,7 +21,8 @@ const Card = (props) => {
                     <View style={styles.cardBackImageWrapper}>
                     <ImageBackground
                         source={require("../../assets/images/klimakampen-logo.png")}
-                        style={styles.cardBackImage}>
+                        style={styles.cardBackImage}
+                    >
                     </ImageBackground>
                         <Text style={styles.headingBack}>Facts</Text>
                         <Text style={styles.descCardBack}>{desc}</Text>
@@ -31,7 +32,9 @@ const Card = (props) => {
                 <View style={styles.cardFront}>
                     <ImageBackground
                         source={image}
-                        style={styles.cardFrontImage}>
+                        style={styles.cardFrontImage}
+                    >
+                        <Text style={styles.subheadingFrontLeft}>age: {age}</Text>
                         <View style={styles.cardFrontInner}>
                             <Text style={styles.headingFront}>{name}</Text>
                             <Text style={styles.descFront}>{bio}</Text>
@@ -71,7 +74,13 @@ const styles = StyleSheet.create({
     cardFrontInner: {
         padding: 30,
         alignItems: "center",
-        backgroundColor: "#fff"
+        backgroundColor: "#ffffff"
+    },
+    subheadingFrontLeft: {
+        paddingLeft: 15,
+        paddingBottom: 5,
+        fontSize: 20,
+        color: "#ffffff",
     },
     headingFront: {
         fontSize: 30,
@@ -113,16 +122,19 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     headingBack: {
-        fontSize: 30,
+        marginTop: 15,
+        fontSize: 20,
         color: "#bae9da",
         fontWeight: "bold",
-        textTransform: "uppercase"
+        textTransform: "uppercase",
     },
     descCardBack: {
-        margin: 30,
+        margin: 20,
+        textAlign: "center",
         fontSize: 18,
         color: "#7fccac",
         lineHeight: 25,
+        fontWeight: "bold",
     },
 
 })

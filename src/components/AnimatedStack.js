@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {StyleSheet, View, Text, useWindowDimensions} from "react-native";
+import {StyleSheet, View, useWindowDimensions} from "react-native";
 import Animated, {
     useSharedValue,
     useAnimatedStyle,
@@ -13,7 +13,7 @@ import Like from "../../assets/images/LIKE.png";
 import Nope from "../../assets/images/nope.png";
 
 const ROTATION = 60
-const SWIPE_VELOCITY = 1200
+const SWIPE_VELOCITY = 1000
 
 const AnimatedStack = (props) => {
     const {data, renderItem, onSwipeLeft, onSwipeRight} = props
