@@ -126,13 +126,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         flex: 1,
-        width: "100%"
+        width: "100%",
     },
     animatedCard: {
-        width: "90%",
+        width: "85%",
         height: "70%",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     },
     nextCardContainer: {
         ...StyleSheet.absoluteFillObject,

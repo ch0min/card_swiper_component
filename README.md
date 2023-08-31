@@ -5,7 +5,7 @@
 
 
 TODO:
-- fix elevation, gives a brighter border on the next card.
+- fix elevation so opacity doesn't give this bright inner effect - commented out shadow for now as a fix
 - fix so that you can swipe instantly after the next card
-- make a new view on the card so it has 2 sections
-- 
+- make a new view on the card, so it has 2 sections
+- fix small white border when swiping on cards

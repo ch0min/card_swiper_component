@@ -6,7 +6,7 @@ import Card from "../components/Card";
 import AnimatedStack from "../components/AnimatedStack";
 
 
-const HomeScreen = () => {
+const SwipeScreen = () => {
     const onSwipeLeft = (user) => {
         console.warn("Swipe Left", user.name)   // write here for backend data logic
     }
@@ -31,8 +31,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         flex: 1,
-        width: "100%"
+        width: "100%",
+        backgroundColor: "#5ba970"
     }
 })
 
-export default HomeScreen
+export default SwipeScreen

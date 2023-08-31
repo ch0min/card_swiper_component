@@ -2,13 +2,13 @@ import 'react-native-gesture-handler';
 import React from "react";
 import {StyleSheet} from "react-native";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
-import HomeScreen from "./src/screens/HomeScreen";
+import SwipeScreen from "./src/screens/SwipeScreen";
 
 
 const App = () => {
     return (
         <GestureHandlerRootView style={styles.pageContainer}>
-            <HomeScreen />
+            <SwipeScreen />
         </GestureHandlerRootView>
     )
 }
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     pageContainer: {
         justifyContent: "center",
         alignItems: "center",
-        flex: 1
+        flex: 1,
     }
 })
 

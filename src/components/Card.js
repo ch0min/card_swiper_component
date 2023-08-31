@@ -7,7 +7,7 @@ const Card = (props) => {
     return (
         <View style={styles.card}>
             <ImageBackground
-                source={{uri: image}}
+                source={image}
                 style={styles.image}>
                 <View style={styles.cardInner}>
                     <Text style={styles.name}>{name}</Text>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         // },
         // shadowOpacity: 1,
         // shadowRadius: 10,
-        elevation: 10
+        // elevation: 10
     },
     image: {
         width: "100%",
@@ -43,7 +43,9 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     cardInner: {
-        padding: 10
+        padding: 40,
+        alignItems: "center",
+        backgroundColor: "#fff"
     },
     name: {
         fontSize: 30,
