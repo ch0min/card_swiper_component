@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: "#bae9da",
         fontWeight: "bold",
-        fontStyle: "uppercase"
+        textTransform: "uppercase"
     },
     descCardBack: {
         margin: 30,
