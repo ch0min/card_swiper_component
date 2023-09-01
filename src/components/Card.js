@@ -45,9 +45,6 @@ const Card = (props) => {
                         source={image}
                         style={styles.cardFrontImage}
                     >
-                        <TouchableOpacity style={styles.buttonInfo} onPressIn={toggleButton}>
-                            <Ionicons name="information-circle" style={styles.buttonIcon}/>
-                        </TouchableOpacity>
                         <Text style={styles.subheadingFrontLeft}><Image source={icon}
                                                                         style={styles.subheadingIcon}/> {age}yo </Text>
                         <View style={styles.cardFrontInner}>
@@ -55,6 +52,9 @@ const Card = (props) => {
                             <Text style={styles.descFront}>{bio}</Text>
                         </View>
                     </ImageBackground>
+                    <TouchableOpacity style={styles.buttonInfo} onPressIn={toggleButton}>
+                        <Ionicons name="information-circle" style={styles.buttonIcon}/>
+                    </TouchableOpacity>
                 </View>
             )}
         </View>
@@ -154,13 +154,12 @@ const styles = StyleSheet.create({
     },
     buttonInfo: {
         position: "absolute",
-        top: 10,
+        top: 5,
         right: 10,
     },
     buttonIcon: {
         fontSize: 44,
         color: "#ffffff",
-
     },
 
 

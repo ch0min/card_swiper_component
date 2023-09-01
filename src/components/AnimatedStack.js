@@ -9,7 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 import {PanGestureHandler} from "react-native-gesture-handler";
 
-import Like from "../../assets/images/LIKE.png";
+import Like from "../../assets/images/LIKE2.png";
 import Nope from "../../assets/images/nope.png";
 
 const ROTATION = 60
@@ -59,7 +59,7 @@ const AnimatedStack = (props) => {
 
     const likeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
-            [0, hiddenTranslateX / 5],
+            [0, hiddenTranslateX / 2],
             [0, 1])
     }))
     const nopeStyle = useAnimatedStyle(() => ({
@@ -78,7 +78,9 @@ const AnimatedStack = (props) => {
         },
         onEnd: (event) => {
             if (Math.abs(event.velocityX) < SWIPE_VELOCITY) {
-                translateX.value = withSpring(0)
+                translateX.value = withSpring(0, {
+                    damping: 15,
+                })
                 return
             }
             translateX.value = withSpring(event.velocityX > 0 ? hiddenTranslateX : -hiddenTranslateX,
@@ -112,8 +114,8 @@ const AnimatedStack = (props) => {
             {currentProfile && (
                 <PanGestureHandler onGestureEvent={gestureHandler}>
                     <Animated.View style={[styles.animatedCard, cardStyle]}>
-                        <Animated.Image source={Like} style={[styles.labels, {left: 10}, likeStyle]}/>
-                        <Animated.Image source={Nope} style={[styles.labels, {right: 10}, nopeStyle]}/>
+                        <Animated.Image source={Like} style={[styles.yes, {left: 10}, likeStyle]}/>
+                        <Animated.Image source={Nope} style={[styles.nope, {right: 10}, nopeStyle]}/>
                         {renderItem({item: currentProfile})}
                     </Animated.View>
                 </PanGestureHandler>
@@ -142,13 +144,22 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    labels: {
+    yes: {
+        width: 90,
+        height: 100,
+        resizeMode: "contain",
+        position: "absolute",
+        top: 40,
+        zIndex: 2,
+        // elevation: 1   // maybe on ios or android?
+    },
+    nope: {
         width: 125,
         height: 125,
         resizeMode: "contain",
         position: "absolute",
-        top: 10,
-        zIndex: 5,
+        top: 40,
+        zIndex: 2,
         // elevation: 1   // maybe on ios or android?
     }
 })

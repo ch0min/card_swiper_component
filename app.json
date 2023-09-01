@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "tinder_swiper",
-    "slug": "tinder_swiper",
+    "name": "swiper",
+    "slug": "swiper",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/age.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
