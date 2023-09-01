@@ -59,12 +59,12 @@ const AnimatedStack = (props) => {
 
     const likeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
-            [0, hiddenTranslateX / 5],
+            [0, hiddenTranslateX / 3],
             [0, 1])
     }))
     const nopeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
-            [0, -hiddenTranslateX / 5],
+            [0, -hiddenTranslateX / 3],
             [0, 1])
     }))
 
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         resizeMode: "contain",
         position: "absolute",
         top: 10,
-        zIndex: 1,
+        zIndex: 5,
         // elevation: 1   // maybe on ios or android?
     }
 })

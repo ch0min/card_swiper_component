@@ -1,9 +1,12 @@
 import React, {useState} from "react";
-import {StyleSheet, View, Text, ImageBackground} from "react-native";
+import {StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 
+import {Ionicons} from "@expo/vector-icons";
+
+
 const Card = (props) => {
-    const {name, image, bio, desc, age} = props.user
+    const {name, image, bio, desc, age, icon} = props.user
 
     const [isCardFlipped, setIsCardFlipped] = useState(false)
 
@@ -13,28 +16,40 @@ const Card = (props) => {
         }
     }
 
+    const toggleButton = () => {
+        setIsCardFlipped(!isCardFlipped)
+    }
+
 
     return (
-        <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
+
+        <View style={styles.cardContainer}>
             {isCardFlipped ? (
-                <View style={styles.cardBack}>
-                    <View style={styles.cardBackImageWrapper}>
-                    <ImageBackground
-                        source={require("../../assets/images/klimakampen-logo.png")}
-                        style={styles.cardBackImage}
-                    >
-                    </ImageBackground>
-                        <Text style={styles.headingBack}>Facts</Text>
-                        <Text style={styles.descCardBack}>{desc}</Text>
+                <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
+                    <View style={styles.cardBack}>
+                        <View style={styles.cardBackImageWrapper}>
+                            <ImageBackground
+                                source={require("../../assets/images/klimakampen-logo.png")}
+                                style={styles.cardBackImage}
+                            >
+                            </ImageBackground>
+                            <Text style={styles.headingBack}>Facts</Text>
+                            <Text style={styles.descCardBack}>{desc}</Text>
+                        </View>
                     </View>
-                </View>
+                </TapGestureHandler>
+
             ) : (
                 <View style={styles.cardFront}>
                     <ImageBackground
                         source={image}
                         style={styles.cardFrontImage}
                     >
-                        <Text style={styles.subheadingFrontLeft}>age: {age}</Text>
+                        <TouchableOpacity style={styles.buttonInfo} onPressIn={toggleButton}>
+                            <Ionicons name="information-circle" style={styles.buttonIcon}/>
+                        </TouchableOpacity>
+                        <Text style={styles.subheadingFrontLeft}><Image source={icon}
+                                                                        style={styles.subheadingIcon}/> {age}yo </Text>
                         <View style={styles.cardFrontInner}>
                             <Text style={styles.headingFront}>{name}</Text>
                             <Text style={styles.descFront}>{bio}</Text>
@@ -42,11 +57,49 @@ const Card = (props) => {
                     </ImageBackground>
                 </View>
             )}
-        </TapGestureHandler>
+        </View>
+
+
+
+        // <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
+        //     {isCardFlipped ? (
+        //         <View style={styles.cardBack}>
+        //             <View style={styles.cardBackImageWrapper}>
+        //             <ImageBackground
+        //                 source={require("../../assets/images/klimakampen-logo.png")}
+        //                 style={styles.cardBackImage}
+        //             >
+        //             </ImageBackground>
+        //                 <Text style={styles.headingBack}>Facts</Text>
+        //                 <Text style={styles.descCardBack}>{desc}</Text>
+        //             </View>
+        //         </View>
+        //     ) : (
+        //         <View style={styles.cardFront}>
+        //             <ImageBackground
+        //                 source={image}
+        //                 style={styles.cardFrontImage}
+        //             >
+        //                 <Text style={styles.subheadingFrontLeft}>age: {age}</Text>
+        //                 <View style={styles.cardFrontInner}>
+        //                     <Text style={styles.headingFront}>{name}</Text>
+        //                     <Text style={styles.descFront}>{bio}</Text>
+        //                 </View>
+        //             </ImageBackground>
+        //         </View>
+        //     )}
+        // </TapGestureHandler>
+
+
     )
 }
 
 const styles = StyleSheet.create({
+    cardContainer: {
+        width: "100%",
+        height: "100%",
+        zIndex: 1
+    },
     /* CARD FRONT */
     cardFront: {
         width: "100%",
@@ -74,13 +127,18 @@ const styles = StyleSheet.create({
     cardFrontInner: {
         padding: 30,
         alignItems: "center",
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
     },
     subheadingFrontLeft: {
         paddingLeft: 15,
-        paddingBottom: 5,
+        paddingBottom: 10,
         fontSize: 20,
+        fontWeight: "bold",
         color: "#ffffff",
+    },
+    subheadingIcon: {
+        width: 30,
+        height: 30,
     },
     headingFront: {
         fontSize: 30,
@@ -88,9 +146,21 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     descFront: {
+        textAlign: "center",
         fontSize: 18,
         color: "#6a6a6a",
         lineHeight: 25,
+
+    },
+    buttonInfo: {
+        position: "absolute",
+        top: 10,
+        right: 10,
+    },
+    buttonIcon: {
+        fontSize: 44,
+        color: "#ffffff",
+
     },
 
 
