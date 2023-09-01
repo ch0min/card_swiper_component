@@ -59,12 +59,12 @@ const AnimatedStack = (props) => {
 
     const likeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
-            [0, hiddenTranslateX / 3],
+            [0, hiddenTranslateX / 5],
             [0, 1])
     }))
     const nopeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
-            [0, -hiddenTranslateX / 3],
+            [0, -hiddenTranslateX / 5],
             [0, 1])
     }))
 
