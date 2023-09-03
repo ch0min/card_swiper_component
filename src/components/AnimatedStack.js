@@ -20,8 +20,6 @@ const AnimatedStack = (props) => {
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const [nextIndex, setNextIndex] = useState(currentIndex + 1)
-
-
     const currentProfile = data[currentIndex]
     const nextProfile = data[nextIndex]
 
@@ -81,16 +79,18 @@ const AnimatedStack = (props) => {
                 translateX.value = withSpring(0, {
                     damping: 15,
                 })
-                return
+            } else {
+                translateX.value = withSpring(event.velocityX > 0 ? hiddenTranslateX : -hiddenTranslateX,
+                    {},
+                    () => {
+                        runOnJS(setCurrentIndex)(currentIndex + 1)
+                    }
+                )
+
+                const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft
+                onSwipe && runOnJS(onSwipe)(currentProfile)
+
             }
-            translateX.value = withSpring(event.velocityX > 0 ? hiddenTranslateX : -hiddenTranslateX,
-                {},
-                () => runOnJS(setCurrentIndex)(currentIndex + 1)
-            )
-
-            const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft
-            onSwipe && runOnJS(onSwipe)(currentProfile)
-
         }
     })
 
