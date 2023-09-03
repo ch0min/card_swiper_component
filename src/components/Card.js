@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
     },
     subheadingFrontLeft: {
-        paddingLeft: 15,
+        paddingLeft: 5,
         paddingBottom: 10,
         fontSize: 20,
         fontWeight: "bold",

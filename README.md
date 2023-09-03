@@ -15,6 +15,7 @@ TODO:
 - on back card use PanGestureHandler, so you can scroll down if the description is more than the card.
 - implement icon in the middle?
 - refactor components into smaller components
+- flickering last card after swipe
 
 - Design adjustment
 
