@@ -16,6 +16,7 @@ TODO:
 - implement icon in the middle?
 - refactor components into smaller components
 - flickering last card after swipe
+- CB: cant click back if your clicking at the same area as the labels.
 
 - Design adjustment
 
