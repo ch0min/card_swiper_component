@@ -2,6 +2,7 @@
 - yarn add react-native-reanimated -> babel plugin: plugins: ['react-native-reanimated/plugin'],
 - yarn add react-native-gesture-handler
 - yarn add react-native-vector-icons
+- yarn add expo-asset
 - npx pod-install (only on MacOS)
 
 

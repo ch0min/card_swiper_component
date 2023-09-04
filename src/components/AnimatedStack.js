@@ -66,7 +66,6 @@ const AnimatedStack = (props) => {
             [0, 1])
     }))
 
-
     const gestureHandler = useAnimatedGestureHandler({
         onStart: (_, context) => {
             context.startX = translateX.value
@@ -87,22 +86,23 @@ const AnimatedStack = (props) => {
                     }
                 )
 
-                const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft
-                onSwipe && runOnJS(onSwipe)(currentProfile)
+                const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
+                onSwipe && runOnJS(onSwipe)(currentProfile);
 
             }
         }
     })
 
+
     useEffect(() => {
         translateX.value = 0
         setNextIndex(currentIndex + 1)
+
     }, [currentIndex, translateX]);
 
 
     return (
         <View style={styles.container}>
-
             {nextProfile && (
                 <View style={styles.nextCardContainer}>
                     <Animated.View style={[styles.animatedCard, nextCardStyle]}>
@@ -120,7 +120,6 @@ const AnimatedStack = (props) => {
                     </Animated.View>
                 </PanGestureHandler>
             )}
-
 
         </View>
     )

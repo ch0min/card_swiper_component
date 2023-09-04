@@ -9,7 +9,8 @@ export default [
             "It later became the world's largest personal computer software company. " +
             "Gates led the company as its chairman and chief executive officer until stepping down as CEO in January 2000",
         age: 67,
-        icon: require("../../assets/icons/age.png")
+        icon: require("../../assets/icons/age.png"),
+        testbg: "red"
     },
     {
         id: "2",
@@ -22,7 +23,8 @@ export default [
             "Musk later transferred to the University of Pennsylvania, " +
             "and received bachelor's degrees in economics and physics there.",
         age: 52,
-        icon: require("../../assets/icons/age.png")
+        icon: require("../../assets/icons/age.png"),
+        testbg: "blue"
     },
     {
         id: "3",
@@ -34,7 +36,8 @@ export default [
             "Originally launched in only select college campuses, the site expanded rapidly and eventually beyond colleges, " +
             "reaching one billion users in 2012. Zuckerberg took the company public in May 2012 with majority shares.",
         age: 39,
-        icon: require("../../assets/icons/age.png")
+        icon: require("../../assets/icons/age.png"),
+        testbg: "red"
     },
     {
         id: "4",
@@ -46,6 +49,8 @@ export default [
             "He worked on Wall Street in a variety of related fields from 1986 to early 1994. " +
             "Bezos founded Amazon in late 1994 on a road trip from New York City to Seattle.",
         age: 59,
-        icon: require("../../assets/icons/age.png")
+        icon: require("../../assets/icons/age.png"),
+        testbg: "green"
+
     }
 ];

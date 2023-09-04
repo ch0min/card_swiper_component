@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 
@@ -6,9 +6,10 @@ import {Ionicons} from "@expo/vector-icons";
 
 
 const Card = (props) => {
-    const {name, image, bio, desc, age, icon} = props.user
+    const {name, image, bio, desc, age, icon, testbg} = props.user
 
     const [isCardFlipped, setIsCardFlipped] = useState(false)
+
 
     const onSingleTapEvent = (event) => {
         if (event.nativeEvent.state === State.ACTIVE) {
@@ -22,7 +23,6 @@ const Card = (props) => {
 
 
     return (
-
         <View style={styles.cardContainer}>
             {isCardFlipped ? (
                 <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
@@ -59,6 +59,43 @@ const Card = (props) => {
             )}
         </View>
 
+    /** TESTING WITH COLOR BG INSTEAD OF IMAGE BG **/
+    // <View style={styles.cardContainer}>
+    //     {isCardFlipped ? (
+    //         <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
+    //             <View style={styles.cardBack}>
+    //                 <View style={styles.cardBackImageWrapper}>
+    //                     <ImageBackground
+    //                         source={require("../../assets/images/klimakampen-logo.png")}
+    //                         style={styles.cardBackImage}
+    //                     >
+    //                     </ImageBackground>
+    //                     <Text style={styles.headingBack}>Facts</Text>
+    //                     <Text style={styles.descCardBack}>{desc}</Text>
+    //                 </View>
+    //             </View>
+    //         </TapGestureHandler>
+    //
+    //     ) : (
+    //         <View style={styles.cardFront}>
+    //             <View
+    //                 source={image}
+    //                 style={{backgroundColor: testbg, ...StyleSheet.absoluteFillObject,
+    //                 }}
+    //             >
+    //                 <Text style={styles.subheadingFrontLeft}><Image source={icon}
+    //                                                                 style={styles.subheadingIcon}/> {age}yo </Text>
+    //                 <View style={styles.cardFrontInner}>
+    //                     <Text style={styles.headingFront}>{name}</Text>
+    //                     <Text style={styles.descFront}>{bio}</Text>
+    //                 </View>
+    //             </View>
+    //             <TouchableOpacity style={styles.buttonInfo} onPressIn={toggleButton}>
+    //                 <Ionicons name="information-circle" style={styles.buttonIcon}/>
+    //             </TouchableOpacity>
+    //         </View>
+    //     )}
+    // </View>
 
 
         // <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
@@ -160,6 +197,10 @@ const styles = StyleSheet.create({
     buttonIcon: {
         fontSize: 44,
         color: "#ffffff",
+    },
+    testbg: {
+        ...StyleSheet.absoluteFillObject,
+
     },
 
 
