@@ -62,15 +62,16 @@ const styles = StyleSheet.create({
         zIndex: 1
     },
     subheadingFrontLeft: {
-        paddingLeft: 5,
         paddingBottom: 10,
         fontSize: 20,
         fontWeight: "bold",
         color: "#ffffff",
+        top: 75,
+        left: 10
     },
     subheadingIcon: {
         width: 30,
-        height: 30,
+        bottom: 15
     },
     headingFront: {
         fontSize: 30,
