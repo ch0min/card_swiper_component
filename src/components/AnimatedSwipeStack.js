@@ -17,7 +17,7 @@ const ROTATION = 60
 const SWIPE_VELOCITY = 1000
 const LABEL_THRESHOLD = 50
 
-const AnimatedStack = (props) => {
+const AnimatedSwipeStack = (props) => {
     const {data, renderItem, onSwipeLeft, onSwipeRight} = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -45,6 +45,7 @@ const AnimatedStack = (props) => {
         ]
     }))
 
+
     const nextCardStyle = useAnimatedStyle(() => ({
         transform: [
             {
@@ -57,6 +58,8 @@ const AnimatedStack = (props) => {
             [-hiddenTranslateX, 0, hiddenTranslateX],
             [1, 0.5, 1]),
     }))
+
+
 
     const likeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
@@ -174,4 +177,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AnimatedStack
+export default AnimatedSwipeStack

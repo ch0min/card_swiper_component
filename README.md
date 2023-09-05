@@ -11,7 +11,7 @@ _____________________________________
 
 
 TODO:
-- fix so that you can swipe instantly after the next card
+- fix so that you can swipe instantly after the next card ?
 - implement card stack or not?
 - on back card use PanGestureHandler, so you can scroll down if the description is more than the card.
 - implement icon in the middle?
@@ -19,6 +19,7 @@ TODO:
 - CF: Loading spinner when loading the swipe screen
 - CB: cant click back if your clicking at the same area as the labels.
 - Instead of like and nope labels in top left and right corner, could be a short animation right after you swipe the current card before the next card shows, which says ur answer
+- CB: Make animation
 
 - Design adjustment
 
