@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     },
     subheadingIcon: {
         width: 30,
-        bottom: 15
+        height: 30,
     },
     headingFront: {
         fontSize: 30,
