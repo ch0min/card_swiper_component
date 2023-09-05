@@ -5,15 +5,17 @@ import Animated, {
     useAnimatedStyle,
     useDerivedValue,
     useAnimatedGestureHandler,
-    interpolate, withSpring, runOnJS
+    interpolate, withSpring, runOnJS, Extrapolate
 } from "react-native-reanimated";
 import {PanGestureHandler} from "react-native-gesture-handler";
+
 
 import Like from "../../assets/images/LIKE2.png";
 import Nope from "../../assets/images/nope.png";
 
 const ROTATION = 60
 const SWIPE_VELOCITY = 1000
+const LABEL_THRESHOLD = 50
 
 const AnimatedStack = (props) => {
     const {data, renderItem, onSwipeLeft, onSwipeRight} = props
@@ -26,10 +28,12 @@ const AnimatedStack = (props) => {
     const {width: screenWidth} = useWindowDimensions()
     const hiddenTranslateX = 2 * screenWidth
     const translateX = useSharedValue(0) // main points: -width   0    width
+
     const rotate = useDerivedValue(() => interpolate(translateX.value,
         [0, hiddenTranslateX],
         [0, ROTATION]
     ) + "deg")               // main points: -60deg  0deg  60deg
+
 
     const cardStyle = useAnimatedStyle(() => ({
         transform: [{
@@ -52,18 +56,21 @@ const AnimatedStack = (props) => {
         opacity: interpolate(translateX.value,
             [-hiddenTranslateX, 0, hiddenTranslateX],
             [1, 0.5, 1]),
-
     }))
 
     const likeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
-            [0, hiddenTranslateX / 2],
-            [0, 1])
+            [LABEL_THRESHOLD, hiddenTranslateX / 5],
+            [0, 1],
+            Extrapolate.CLAMP
+        )
     }))
     const nopeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
-            [0, -hiddenTranslateX / 5],
-            [0, 1])
+            [-LABEL_THRESHOLD, -hiddenTranslateX / 5],
+            [0, 1],
+        Extrapolate.CLAMP
+        )
     }))
 
     const gestureHandler = useAnimatedGestureHandler({
@@ -76,7 +83,7 @@ const AnimatedStack = (props) => {
         onEnd: (event) => {
             if (Math.abs(event.velocityX) < SWIPE_VELOCITY) {
                 translateX.value = withSpring(0, {
-                    damping: 15,
+                    damping: 10,
                 })
             } else {
                 translateX.value = withSpring(event.velocityX > 0 ? hiddenTranslateX : -hiddenTranslateX,
@@ -88,16 +95,20 @@ const AnimatedStack = (props) => {
 
                 const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
                 onSwipe && runOnJS(onSwipe)(currentProfile);
-
             }
         }
     })
 
 
     useEffect(() => {
-        translateX.value = 0
-        setNextIndex(currentIndex + 1)
+        const delayReset = setTimeout(() => {
+            translateX.value = 0
+            setNextIndex(currentIndex + 1)
+        }, 50)
 
+        return () => {
+            clearTimeout(delayReset)
+        }
     }, [currentIndex, translateX]);
 
 
@@ -127,10 +138,10 @@ const AnimatedStack = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: "center",
-        alignItems: "center",
         flex: 1,
         width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
     },
     animatedCard: {
         width: "85%",
