@@ -11,8 +11,12 @@ const CardFront = ({name, image, bio, age, icon, toggleInfoButton}) => {
                 style={styles.cardFrontImage}>
                 <Text style={styles.subheadingFrontLeft}>
                     <Image source={icon}
-                           style={styles.subheadingIcon}/> {age}yo </Text>
-                <View style={styles.cardFrontInner}>
+                           style={styles.subheadingIcon}/> {age}yo
+                </Text>
+                <View style={styles.centerCircle}>
+                    <Ionicons name="trash-outline" style={styles.centerIcon}/>
+                </View>
+                <View style={styles.cardFrontBox}>
                     <Text style={styles.headingFront}>{name}</Text>
                     <Text style={styles.descFront}>{bio}</Text>
                 </View>
@@ -50,10 +54,12 @@ const styles = StyleSheet.create({
 
         justifyContent: "flex-end",
     },
-    cardFrontInner: {
+    cardFrontBox: {
+        height: "25%",
         padding: 30,
         alignItems: "center",
         backgroundColor: "#ffffff",
+        zIndex: 1
     },
     subheadingFrontLeft: {
         paddingLeft: 5,
@@ -86,6 +92,22 @@ const styles = StyleSheet.create({
         fontSize: 44,
         color: "#ffffff",
     },
+    centerCircle: {
+        width: 75,
+        height: 75,
+        backgroundColor: "#ffffff",
+        borderRadius: 50,
+        alignSelf: "center",
+        top: 30,
+        zIndex: 2
+    },
+    centerIcon: {
+        fontSize: 44,
+        color: "#5ba970",
+        alignSelf: "center",
+        top: 15,
+
+    }
 })
 
 export default CardFront
