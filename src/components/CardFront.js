@@ -1,31 +1,36 @@
 import React from "react";
-import {StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground} from "react-native";
+import {StyleSheet, View, Text, Pressable, Image, ImageBackground, TouchableOpacity} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 
-const CardFront = ({name, image, bio, age, icon, toggleInfoButton}) => {
+
+const CardFront = ({name, image, bio, age, icon, toggleInfoButton, isActive}) => {
 
     return (
-        <View style={styles.cardFront}>
-            <ImageBackground
-                source={image}
-                style={styles.cardFrontImage}>
-                <Text style={styles.subheadingFrontLeft}>
-                    <Image source={icon}
-                           style={styles.subheadingIcon}/> {age}yo
-                </Text>
-                <View style={styles.centerCircle}>
-                    <Ionicons name="trash-outline" style={styles.centerIcon}/>
-                </View>
-                <View style={styles.cardFrontBox}>
-                    <Text style={styles.headingFront}>{name}</Text>
-                    <Text style={styles.descFront}>{bio}</Text>
-                </View>
-            </ImageBackground>
-            <TouchableOpacity style={styles.buttonInfo} onPressIn={toggleInfoButton}>
+        <View>
+            <TouchableOpacity style={styles.buttonInfo} onPress={toggleInfoButton}>
                 <Ionicons name="information-circle" style={styles.buttonInfoIcon}/>
             </TouchableOpacity>
-        </View>
 
+
+            <ImageBackground
+                   source={image}
+                   style={styles.cardFrontImage}>
+                   <Text style={styles.subheadingFrontLeft}>
+                       <Image source={icon}
+                              style={styles.subheadingIcon}/> {age}y/o
+                   </Text>
+                   <View style={styles.centerCircle}>
+                       <Ionicons name="trash-outline" style={styles.centerIcon}/>
+                   </View>
+                   <View style={styles.cardFrontBox}>
+                       <Text style={styles.headingFront}>{name}</Text>
+                       <Text style={styles.descFront}>{bio}</Text>
+                   </View>
+               </ImageBackground>
+            {/*   <TouchableOpacity style={styles.buttonInfo} onPress={toggleInfoButton} >*/}
+            {/*       <Ionicons name="information-circle" style={styles.buttonInfoIcon}/>*/}
+            {/*   </TouchableOpacity>*/}
+        </View>
     )
 }
 
@@ -37,21 +42,21 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: "#5ba970",
 
-        shadowColor: "#000000",   // for ios
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 10,
+        // shadowColor: "#000000",   // for ios
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 5,
+        // },
+        // shadowOpacity: 1,
+        // shadowRadius: 10,
         // elevation: 10    // causing problems for nextCard
     },
     cardFrontImage: {
+        position: "relative",
         width: "100%",
         height: "100%",
         borderRadius: 20,
         overflow: "hidden",
-
         justifyContent: "flex-end",
     },
     cardFrontBox: {
@@ -59,7 +64,6 @@ const styles = StyleSheet.create({
         padding: 30,
         alignItems: "center",
         backgroundColor: "#ffffff",
-        zIndex: 1
     },
     subheadingFrontLeft: {
         paddingBottom: 10,
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#ffffff",
         top: 75,
-        left: 10
+        left: 10,
     },
     subheadingIcon: {
         width: 30,
@@ -88,10 +92,11 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 5,
         right: 10,
+        zIndex: 2
     },
     buttonInfoIcon: {
         fontSize: 44,
-        color: "#ffffff",
+        color: "#ffffff"
     },
     centerCircle: {
         width: 75,
@@ -107,7 +112,6 @@ const styles = StyleSheet.create({
         color: "#5ba970",
         alignSelf: "center",
         top: 15,
-
     }
 })
 

@@ -17,7 +17,7 @@ const ROTATION = 60
 const SWIPE_VELOCITY = 1000
 const LABEL_THRESHOLD = 50
 
-const AnimatedSwipeStack = (props) => {
+const SwipeLogic = (props) => {
     const {data, renderItem, onSwipeLeft, onSwipeRight} = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -177,4 +177,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AnimatedSwipeStack
+export default SwipeLogic

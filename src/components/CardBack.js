@@ -3,17 +3,20 @@ import {StyleSheet, View, Text, ImageBackground} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 
 
-const CardBack = ({desc, toggleInfoButton}) => {
+const CardBack = ({desc, rotate, toggleTap}) => {
+
 
     const onSingleTapEvent = (event) => {
         if (event.nativeEvent.state === State.ACTIVE) {
-            toggleInfoButton()
+            if (rotate.value === 1) {
+                toggleTap()
+            }
         }
     }
 
     return (
+        <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
         <View style={styles.cardBack}>
-            <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
             <View style={styles.cardBackImageWrapper}>
                 <ImageBackground
                     source={require("../../assets/images/klimakampen-logo.png")}
@@ -22,15 +25,13 @@ const CardBack = ({desc, toggleInfoButton}) => {
                 <Text style={styles.headingBack}>Facts</Text>
                 <Text style={styles.descCardBack}>{desc}</Text>
             </View>
-            </TapGestureHandler>
         </View>
+        </TapGestureHandler>
 
     )
 }
 
 const styles = StyleSheet.create({
-
-
     /* CARD BACK */
     cardBack: {
         width: "100%",

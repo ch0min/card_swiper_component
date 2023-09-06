@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import {StyleSheet, View, Text, TouchableOpacity} from "react-native";
+import {StyleSheet, View, Text, TouchableOpacity, ImageBackground, Image} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
+import {Ionicons} from "@expo/vector-icons";
 
 const TestTapScreen = () => {
     const [isSingleTapped, setIsSingleTapped] = useState(false);
@@ -12,45 +13,32 @@ const TestTapScreen = () => {
     };
 
     const toggleCard = () => {
+        console.log("Is Pressed")
         setIsSingleTapped(!isSingleTapped);
 
     }
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={toggleCard}>
-                <Text style={styles.button}>Click</Text>
+            <ImageBackground
+                source={require("../../assets/images/klimakampen-logo.png")}
+                style={styles.cardFrontImage}>
+            </ImageBackground>
+            <TouchableOpacity style={styles.buttonInfo} onPress={toggleCard}>
+                <Ionicons name="information-circle" style={styles.buttonInfoIcon}/>
             </TouchableOpacity>
-
-            <View style={[
-                isSingleTapped ? styles.blueContainer : styles.redContainer
-            ]}>
-            </View>
         </View>
 
 
 
-        // <TapGestureHandler onHandlerStateChange={_onSingleTap}>
-        //     <View
-        //         style={[
-        //             styles.container,
-        //             isSingleTapped ? styles.blueContainer : styles.redContainer,
-        //         ]}>
-        //
-        //         <Text style={styles.text}>
-        //             {isSingleTapped ? "BLUE" : "RED"}
-        //         </Text>
-        //
-        //     </View>
-        // </TapGestureHandler>
     );
 };
 
 
 const styles = StyleSheet.create({
     container: {
-        width: 100,
-        height: 100,
+        width: "90%",
+        height: "90%",
     },
     redContainer: {
         width: 100,
@@ -74,7 +62,31 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginBottom: 10
-    }
+    },
+    cardFrontImage: {
+        width: "100%",
+        height: "100%",
+        borderRadius: 20,
+        overflow: "hidden",
+        zIndex: 1,
+
+        justifyContent: "flex-end",
+    },
+    buttonInfo: {
+        position: "absolute",
+        top: 55,
+        right: 55,
+        zIndex: 2,
+        elevation: 2,
+
+    },
+    buttonInfoIcon: {
+        fontSize: 44,
+        color: "#ffffff",
+        zIndex: 2,
+        elevation: 2,
+
+    },
 });
 
 export default TestTapScreen;

@@ -4,7 +4,7 @@ import {StyleSheet, View, Text} from "react-native";
 import users from "../../assets/data/users";
 import Card from "../components/Card";
 
-import AnimatedSwipeStack from "../components/AnimatedSwipeStack";
+import SwipeLogic from "../components/SwipeLogic";
 
 
 const SwipeScreen = () => {
@@ -18,7 +18,7 @@ const SwipeScreen = () => {
     return (
         <View style={styles.pageContainer}>
             <Text style={styles.heading}>What's on your mind</Text>
-            <AnimatedSwipeStack
+            <SwipeLogic
                 data={users}
                 renderItem={({item}) => <Card user={item} />}
                 onSwipeLeft={onSwipeLeft}
