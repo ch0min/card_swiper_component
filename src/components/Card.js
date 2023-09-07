@@ -1,14 +1,13 @@
 import React from "react";
 import {StyleSheet, View} from "react-native";
-import Animated, {useSharedValue, useAnimatedStyle, interpolate, withTiming} from "react-native-reanimated";
+import Animated, {useAnimatedStyle, interpolate, withTiming} from "react-native-reanimated";
 
 import CardFront from "./CardFront";
 import CardBack from "./CardBack";
 
 const Card = (props) => {
+    const {rotateFlip} = props
     const {name, image, bio, desc, age, icon} = props.user
-
-    const rotateFlip = useSharedValue(0)
 
     const toggleFlip = () => {
         rotateFlip.value = rotateFlip.value ? 0 : 1
@@ -43,7 +42,7 @@ const Card = (props) => {
     return (
         <View style={styles.cardContainer}>
             <Animated.View style={[styles.cardFront, cardFrontFlipStyle]}>
-                    <CardFront
+                <CardFront
                         name={name}
                         image={image}
                         bio={bio}

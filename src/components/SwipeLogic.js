@@ -17,7 +17,7 @@ const SWIPE_VELOCITY = 1000
 const LABEL_THRESHOLD = 50
 
 const SwipeLogic = (props) => {
-    const {data, renderItem, onSwipeLeft, onSwipeRight} = props
+    const {data, renderItem, onSwipeLeft, onSwipeRight, rotateFlip} = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const [nextIndex, setNextIndex] = useState(currentIndex + 1)
@@ -44,7 +44,6 @@ const SwipeLogic = (props) => {
         ]
     }))
 
-
     const nextCardStyle = useAnimatedStyle(() => ({
         transform: [
             {
@@ -58,6 +57,11 @@ const SwipeLogic = (props) => {
             [1, 0.5, 1]),
     }))
 
+    const nextCardOpacityStyle = useAnimatedStyle(() => ({
+        opacity: interpolate(rotateFlip.value,
+            [1, 0.5, 1],
+            [1, 0, 1])
+    }))
 
     const likeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
@@ -66,6 +70,7 @@ const SwipeLogic = (props) => {
             Extrapolate.CLAMP
         )
     }))
+
     const nopeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
             [-LABEL_THRESHOLD, -hiddenTranslateX / 5],
@@ -117,7 +122,7 @@ const SwipeLogic = (props) => {
         <View style={styles.container}>
             {nextProfile && (
                 <View style={styles.nextCardContainer}>
-                    <Animated.View style={[styles.animatedCard, nextCardStyle]}>
+                    <Animated.View style={[styles.animatedCard, nextCardStyle, nextCardOpacityStyle]}>
                         {renderItem({item: nextProfile})}
                     </Animated.View>
                 </View>

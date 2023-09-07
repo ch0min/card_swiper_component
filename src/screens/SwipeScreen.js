@@ -6,9 +6,12 @@ import Card from "../components/Card";
 
 import SwipeLogic from "../components/SwipeLogic";
 import LoadingSpinner from "../components/LoadingSpinner";
+import {useSharedValue} from "react-native-reanimated";
 
 
 const SwipeScreen = () => {
+    const rotateFlip = useSharedValue(0)
+
     const onSwipeLeft = (user) => {
         console.warn("Swipe Left", user.name)   // write here for backend data logic
     }
@@ -22,9 +25,10 @@ const SwipeScreen = () => {
                 <Text style={styles.heading}>What's on your mind</Text>
                 <SwipeLogic
                     data={users}
-                    renderItem={({item}) => <Card user={item}/>}
+                    renderItem={({item}) => <Card user={item} rotateFlip={rotateFlip}/>}
                     onSwipeLeft={onSwipeLeft}
                     onSwipeRight={onSwipeRight}
+                    rotateFlip={rotateFlip}
                 />
             </View>
         </LoadingSpinner>
