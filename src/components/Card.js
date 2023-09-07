@@ -67,25 +67,6 @@ const Card = (props) => {
                     />
                 </Animated.View>
         </View>
-
-
-        // <View style={styles.cardContainer}>
-        //     {isCardFlipped ? (
-        //             <CardBack
-        //                 desc={desc}
-        //                 toggleInfoButton={toggleInfoButton}
-        //             />
-        //     ) : (
-        //         <CardFront
-        //             name={name}
-        //             image={image}
-        //             bio={bio}
-        //             age={age}
-        //             icon={icon}
-        //             toggleInfoButton={toggleInfoButton}
-        //         />
-        //     )}
-        // </View>
     )
 }
 

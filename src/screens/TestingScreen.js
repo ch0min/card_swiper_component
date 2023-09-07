@@ -3,7 +3,7 @@ import {StyleSheet, View, Text, TouchableOpacity, ImageBackground, Image} from "
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 import {Ionicons} from "@expo/vector-icons";
 
-const TestTapScreen = () => {
+const TestingScreen = () => {
     const [isSingleTapped, setIsSingleTapped] = useState(false);
 
     const _onSingleTap = (event) => {
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TestTapScreen;
+export default TestingScreen;

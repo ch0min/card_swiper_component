@@ -60,7 +60,6 @@ const SwipeLogic = (props) => {
     }))
 
 
-
     const likeStyle = useAnimatedStyle(() => ({
         opacity: interpolate(translateX.value,
             [LABEL_THRESHOLD, hiddenTranslateX / 5],
@@ -72,7 +71,7 @@ const SwipeLogic = (props) => {
         opacity: interpolate(translateX.value,
             [-LABEL_THRESHOLD, -hiddenTranslateX / 5],
             [0, 1],
-        Extrapolate.CLAMP
+            Extrapolate.CLAMP
         )
     }))
 
@@ -128,8 +127,12 @@ const SwipeLogic = (props) => {
             {currentProfile && (
                 <PanGestureHandler onGestureEvent={gestureHandler}>
                     <Animated.View style={[styles.animatedCard, cardStyle]}>
-                        <Animated.Image source={Like} style={[styles.yes, {left: 10}, likeStyle]}/>
-                        <Animated.Image source={Nope} style={[styles.nope, {right: 10}, nopeStyle]}/>
+                        <View style={styles.labelsContainer}>
+                            <Animated.Image source={Like} style={[styles.like, likeStyle]}/>
+                        </View>
+                        <View style={styles.labelsContainer}>
+                            <Animated.Image source={Nope} style={[styles.nope, nopeStyle]}/>
+                        </View>
                         {renderItem({item: currentProfile})}
                     </Animated.View>
                 </PanGestureHandler>
@@ -157,12 +160,17 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    yes: {
+    labelsContainer: {
+        zIndex: 5,
+        pointerEvents: "none"
+    },
+    like: {
         width: 90,
         height: 100,
         resizeMode: "contain",
         position: "absolute",
         top: 40,
+        right: "20%",
         zIndex: 2,
         // elevation: 1   // maybe on ios or android?
     },
@@ -172,6 +180,7 @@ const styles = StyleSheet.create({
         resizeMode: "contain",
         position: "absolute",
         top: 40,
+        left: "15%",
         zIndex: 2,
         // elevation: 1   // maybe on ios or android?
     }

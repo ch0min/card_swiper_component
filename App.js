@@ -3,13 +3,13 @@ import React from "react";
 import {StyleSheet} from "react-native";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
 import SwipeScreen from "./src/screens/SwipeScreen";
-import TestTapScreen from "./src/screens/TestTapScreen";
+import TestingScreen from "./src/screens/TestingScreen";
 
 const App = () => {
     return (
         <GestureHandlerRootView style={styles.pageContainer}>
             <SwipeScreen />
-            {/*<TestTapScreen />*/}
+            {/*<TestingScreen />*/}
         </GestureHandlerRootView>
     )
 }
