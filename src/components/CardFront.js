@@ -3,11 +3,11 @@ import {StyleSheet, View, Text, Image, ImageBackground, TouchableOpacity} from "
 import {Ionicons} from "@expo/vector-icons";
 
 
-const CardFront = ({name, image, bio, age, icon, toggleInfoButton}) => {
+const CardFront = ({name, image, bio, age, icon, toggleFlip}) => {
 
     return (
         <View>
-            <TouchableOpacity style={styles.buttonInfo} onPress={toggleInfoButton}>
+            <TouchableOpacity style={styles.buttonInfo} onPress={toggleFlip}>
                 <Ionicons name="information-circle" style={styles.buttonInfoIcon}/>
             </TouchableOpacity>
 

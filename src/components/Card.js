@@ -10,14 +10,9 @@ const Card = (props) => {
 
     const rotate = useSharedValue(0)
 
-    const toggleInfoButton = () => {
+    const toggleFlip = () => {
         rotate.value = rotate.value ? 0 : 1
         console.log("Button clicked")
-    }
-
-    const toggleTap = () => {
-        rotate.value = rotate.value ? 0 : 1
-        console.log("Card Tapped")
     }
 
     const cardFrontStyle = useAnimatedStyle(() => {
@@ -56,14 +51,14 @@ const Card = (props) => {
                         age={age}
                         icon={icon}
                         rotate={rotate}
-                        toggleInfoButton={toggleInfoButton}
+                        toggleFlip={toggleFlip}
                     />
                 </Animated.View>
                 <Animated.View style={[styles.cardBack, cardBackStyle]}>
                     <CardBack
                         desc={desc}
                         rotate={rotate}
-                        toggleTap={toggleTap}
+                        toggleFlip={toggleFlip}
                     />
                 </Animated.View>
         </View>

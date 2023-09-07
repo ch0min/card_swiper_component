@@ -1,23 +1,9 @@
 import React, {useState} from "react";
-import {StyleSheet, View, Text, TouchableOpacity, ImageBackground, Image} from "react-native";
+import {ActivityIndicator, StyleSheet, View, Text, TouchableOpacity, ImageBackground, Image} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 import {Ionicons} from "@expo/vector-icons";
 
 const TestingScreen = () => {
-    const [isSingleTapped, setIsSingleTapped] = useState(false);
-
-    const _onSingleTap = (event) => {
-        if (event.nativeEvent.state === State.ACTIVE) {
-            setIsSingleTapped(!isSingleTapped);
-        }
-    };
-
-    const toggleCard = () => {
-        console.log("Is Pressed")
-        setIsSingleTapped(!isSingleTapped);
-
-    }
-
     return (
         <View style={styles.container}>
             <ImageBackground

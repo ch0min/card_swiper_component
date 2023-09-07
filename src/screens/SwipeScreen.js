@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, View, Text} from "react-native";
+import {ActivityIndicator, StyleSheet, View, Text} from "react-native";
 
 import users from "../../assets/data/users";
 import Card from "../components/Card";
@@ -24,6 +24,8 @@ const SwipeScreen = () => {
                 onSwipeLeft={onSwipeLeft}
                 onSwipeRight={onSwipeRight}
             />
+
+            <ActivityIndicator style={styles.loadingSpinner}/>
         </View>
     )
 }
@@ -44,6 +46,11 @@ const styles = StyleSheet.create({
         color: "#fff",
         alignItems: "center",
         zIndex: 1
+    },
+    loadingSpinner: {
+        size: "large",
+        justifyContent: "center"
+
     }
 })
 
