@@ -9,7 +9,6 @@ import Animated, {
 } from "react-native-reanimated";
 import {PanGestureHandler} from "react-native-gesture-handler";
 
-
 import Like from "../../assets/images/LIKE2.png";
 import Nope from "../../assets/images/nope.png";
 

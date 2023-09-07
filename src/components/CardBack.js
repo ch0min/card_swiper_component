@@ -3,12 +3,12 @@ import {StyleSheet, View, Text, ImageBackground} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 
 
-const CardBack = ({desc, rotate, toggleFlip}) => {
+const CardBack = ({desc, rotateFlip, toggleFlip}) => {
 
 
     const onSingleTapEvent = (event) => {
         if (event.nativeEvent.state === State.ACTIVE) {
-            if (rotate.value === 1) {
+            if (rotateFlip.value === 1) {
                 toggleFlip()
             }
         }

@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, View, Text, Image, ImageBackground, TouchableOpacity} from "react-native";
+import {StyleSheet, View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 
 
@@ -11,21 +11,24 @@ const CardFront = ({name, image, bio, age, icon, toggleFlip}) => {
                 <Ionicons name="information-circle" style={styles.buttonInfoIcon}/>
             </TouchableOpacity>
 
-            <ImageBackground
-                   source={image}
-                   style={styles.cardFrontImage}>
-                   <Text style={styles.subheadingFrontLeft}>
-                       <Image source={icon}
-                              style={styles.subheadingIcon}/> {age}y/o
-                   </Text>
-                   <View style={styles.centerCircle}>
-                       <Ionicons name="trash-outline" style={styles.centerIcon}/>
-                   </View>
-                   <View style={styles.cardFrontBox}>
-                       <Text style={styles.headingFront}>{name}</Text>
-                       <Text style={styles.descFront}>{bio}</Text>
-                   </View>
-               </ImageBackground>
+                <ImageBackground
+                    source={image}
+                    style={styles.cardFrontImage}
+                >
+                    <Text style={styles.subheadingFrontLeft}>
+                        <Image source={icon}
+                               style={styles.subheadingIcon}/> {age}y/o
+                    </Text>
+                    <View style={styles.centerCircle}>
+                        <Ionicons name="trash-outline" style={styles.centerIcon}/>
+                    </View>
+                    <View style={styles.cardFrontBox}>
+                        <Text style={styles.headingFront}>{name}</Text>
+                        <Text style={styles.descFront}>{bio}</Text>
+                    </View>
+                </ImageBackground>
+
+
         </View>
     )
 }

@@ -1,10 +1,11 @@
 import React from "react";
-import {ActivityIndicator, StyleSheet, View, Text} from "react-native";
+import {StyleSheet, View, Text} from "react-native";
 
 import users from "../../assets/data/users";
 import Card from "../components/Card";
 
 import SwipeLogic from "../components/SwipeLogic";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 
 const SwipeScreen = () => {
@@ -16,26 +17,26 @@ const SwipeScreen = () => {
     }
 
     return (
-        <View style={styles.pageContainer}>
-            <Text style={styles.heading}>What's on your mind</Text>
-            <SwipeLogic
-                data={users}
-                renderItem={({item}) => <Card user={item} />}
-                onSwipeLeft={onSwipeLeft}
-                onSwipeRight={onSwipeRight}
-            />
-
-            <ActivityIndicator style={styles.loadingSpinner}/>
-        </View>
+        <LoadingSpinner>
+            <View style={styles.pageContainer}>
+                <Text style={styles.heading}>What's on your mind</Text>
+                <SwipeLogic
+                    data={users}
+                    renderItem={({item}) => <Card user={item}/>}
+                    onSwipeLeft={onSwipeLeft}
+                    onSwipeRight={onSwipeRight}
+                />
+            </View>
+        </LoadingSpinner>
     )
 }
 
 const styles = StyleSheet.create({
     pageContainer: {
-        justifyContent: "center",
-        alignItems: "center",
         flex: 1,
         width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
         backgroundColor: "#5ba970",
     },
     heading: {
@@ -46,11 +47,6 @@ const styles = StyleSheet.create({
         color: "#fff",
         alignItems: "center",
         zIndex: 1
-    },
-    loadingSpinner: {
-        size: "large",
-        justifyContent: "center"
-
     }
 })
 

@@ -8,56 +8,54 @@ import CardBack from "./CardBack";
 const Card = (props) => {
     const {name, image, bio, desc, age, icon} = props.user
 
-    const rotate = useSharedValue(0)
+    const rotateFlip = useSharedValue(0)
 
     const toggleFlip = () => {
-        rotate.value = rotate.value ? 0 : 1
+        rotateFlip.value = rotateFlip.value ? 0 : 1
         console.log("Button clicked")
     }
 
-    const cardFrontStyle = useAnimatedStyle(() => {
-        const rotateValue = interpolate(rotate.value, [0, 1], [0, 180])
+    const cardFrontFlipStyle = useAnimatedStyle(() => {
+        const rotateValue = interpolate(rotateFlip.value, [0, 1], [0, 180])
         return {
             transform: [
                 {
                     rotateY: withTiming(`${rotateValue}deg`, {duration: 500})
                 }
             ],
-            zIndex: rotate.value === 0 ? 1 : -1
+            zIndex: rotateFlip.value === 0 ? 1 : -1
         }
     })
 
-    const cardBackStyle = useAnimatedStyle(() => {
-        const rotateValue = interpolate(rotate.value, [0, 1], [180, 360])
+    const cardBackFlipStyle = useAnimatedStyle(() => {
+        const rotateValue = interpolate(rotateFlip.value, [0, 1], [180, 360])
         return {
             transform: [
                 {
                     rotateY: withTiming(`${rotateValue}deg`, {duration: 500})
                 }
             ],
-            zIndex: rotate.value === 1 ? 1 : -1
+            zIndex: rotateFlip.value === 1 ? 1 : -1
         }
     })
-
 
 
     return (
         <View style={styles.cardContainer}>
-                <Animated.View style={[styles.cardFront, cardFrontStyle]}>
+            <Animated.View style={[styles.cardFront, cardFrontFlipStyle]}>
                     <CardFront
                         name={name}
                         image={image}
                         bio={bio}
                         age={age}
                         icon={icon}
-                        rotate={rotate}
                         toggleFlip={toggleFlip}
                     />
                 </Animated.View>
-                <Animated.View style={[styles.cardBack, cardBackStyle]}>
+                <Animated.View style={[styles.cardBack, cardBackFlipStyle]}>
                     <CardBack
                         desc={desc}
-                        rotate={rotate}
+                        rotateFlip={rotateFlip}
                         toggleFlip={toggleFlip}
                     />
                 </Animated.View>
@@ -69,6 +67,8 @@ const styles = StyleSheet.create({
     cardContainer: {
         width: "100%",
         height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
         zIndex: 1,
     },
     cardFront: {

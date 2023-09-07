@@ -12,8 +12,7 @@ TODO:
 
 %TOMORROW%
 - CB: On back card use PanGestureHandler, so you can scroll down if the description is more than the card.
-- CF: Loading spinner when loading the swipe screen
-
+- Make the NextCard opacity = 0 when flipping the card animation occurs.
 
 - CF: Fix so that you can swipe instantly after the next card ?
 - Refactoring and splitting components into smaller ones. (SwipeLogic specifically)
@@ -35,6 +34,7 @@ DONE:
 * Overall
 /Week 3
 - Split Card component into smaller components, CardFront, CardBack.
+- Made LoadingSpinner component which can be reused. (Intentionally made it 1 sec delay)
 
 * CardFront
 /Week 2:
@@ -49,6 +49,8 @@ DONE:
 - CF: Make so the nope and like labels appears a little later when panning
 - CF: Implement center icon
 - CF: Press on Icon Button makes Card Flip Animation
+- CF: Loading spinner when loading the swipe screen
+
 
 * CardBack
 /Week 2:
