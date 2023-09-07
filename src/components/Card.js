@@ -1,10 +1,9 @@
-import React, {useState} from "react";
-import {StyleSheet, View, Text, TouchableOpacity, Pressable} from "react-native";
+import React from "react";
+import {StyleSheet, View} from "react-native";
 import Animated, {useSharedValue, useAnimatedStyle, interpolate, withTiming} from "react-native-reanimated";
 
 import CardFront from "./CardFront";
 import CardBack from "./CardBack";
-import {Ionicons} from "@expo/vector-icons";
 
 const Card = (props) => {
     const {name, image, bio, desc, age, icon} = props.user
@@ -101,8 +100,6 @@ const styles = StyleSheet.create({
         height: "100%",
         position: "absolute",
         backfaceVisibility: "hidden",
-        // backgroundColor: "blue"
-
     },
     cardBack: {
         width: "100%",

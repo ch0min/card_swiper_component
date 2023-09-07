@@ -1,16 +1,15 @@
 import React from "react";
-import {StyleSheet, View, Text, Pressable, Image, ImageBackground, TouchableOpacity} from "react-native";
+import {StyleSheet, View, Text, Image, ImageBackground, TouchableOpacity} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 
 
-const CardFront = ({name, image, bio, age, icon, toggleInfoButton, isActive}) => {
+const CardFront = ({name, image, bio, age, icon, toggleInfoButton}) => {
 
     return (
         <View>
             <TouchableOpacity style={styles.buttonInfo} onPress={toggleInfoButton}>
                 <Ionicons name="information-circle" style={styles.buttonInfoIcon}/>
             </TouchableOpacity>
-
 
             <ImageBackground
                    source={image}
@@ -27,9 +26,6 @@ const CardFront = ({name, image, bio, age, icon, toggleInfoButton, isActive}) =>
                        <Text style={styles.descFront}>{bio}</Text>
                    </View>
                </ImageBackground>
-            {/*   <TouchableOpacity style={styles.buttonInfo} onPress={toggleInfoButton} >*/}
-            {/*       <Ionicons name="information-circle" style={styles.buttonInfoIcon}/>*/}
-            {/*   </TouchableOpacity>*/}
         </View>
     )
 }
