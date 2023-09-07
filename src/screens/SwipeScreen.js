@@ -10,7 +10,7 @@ import {useSharedValue} from "react-native-reanimated";
 
 
 const SwipeScreen = () => {
-    const rotateFlip = useSharedValue(0)
+    const flipState = useSharedValue(0)
 
     const onSwipeLeft = (user) => {
         console.warn("Swipe Left", user.name)   // write here for backend data logic
@@ -25,10 +25,10 @@ const SwipeScreen = () => {
                 <Text style={styles.heading}>What's on your mind</Text>
                 <SwipeLogic
                     data={users}
-                    renderItem={({item}) => <Card user={item} rotateFlip={rotateFlip}/>}
+                    renderItem={({item}) => <Card user={item} flipState={flipState}/>}
                     onSwipeLeft={onSwipeLeft}
                     onSwipeRight={onSwipeRight}
-                    rotateFlip={rotateFlip}
+                    flipState={flipState}
                 />
             </View>
         </LoadingSpinner>

@@ -1,14 +1,13 @@
 import React from "react";
-import {StyleSheet, View, Text, ImageBackground} from "react-native";
+import {StyleSheet, View, ScrollView, Text, ImageBackground} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 
 
-const CardBack = ({desc, rotateFlip, toggleFlip}) => {
-
+const CardBack = ({desc, flipState, toggleFlip}) => {
 
     const onSingleTapEvent = (event) => {
         if (event.nativeEvent.state === State.ACTIVE) {
-            if (rotateFlip.value === 1) {
+            if (flipState.value === 1) {
                 toggleFlip()
             }
         }
@@ -16,16 +15,19 @@ const CardBack = ({desc, rotateFlip, toggleFlip}) => {
 
     return (
         <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
-        <View style={styles.cardBack}>
-            <View style={styles.cardBackImageWrapper}>
-                <ImageBackground
-                    source={require("../../assets/images/klimakampen-logo.png")}
-                    style={styles.cardBackImage}>
-                </ImageBackground>
-                <Text style={styles.headingBack}>Facts</Text>
-                <Text style={styles.descCardBack}>{desc}</Text>
+            <View style={styles.cardBack}>
+                <View style={styles.cardBackImageWrapper}>
+
+                    <Text style={styles.headingBack}>Facts</Text>
+                    <ScrollView>
+                        <Text style={styles.descCardBack}>{desc}</Text>
+                    </ScrollView>
+                    <ImageBackground
+                        source={require("../../assets/images/klimakampen-logo.png")}
+                        style={styles.cardBackImage}>
+                    </ImageBackground>
+                </View>
             </View>
-        </View>
         </TapGestureHandler>
 
     )
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
     cardBackImage: {
         width: 100,
         height: 100,
+        top: 75,
         borderRadius: 20,
     },
     headingBack: {
@@ -74,6 +77,7 @@ const styles = StyleSheet.create({
         lineHeight: 25,
         fontWeight: "bold",
     },
+
 
 })
 

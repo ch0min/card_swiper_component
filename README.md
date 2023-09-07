@@ -4,6 +4,7 @@
 - yarn add react-native-vector-icons
 
 
+
 _____________________________________
 
 
@@ -11,12 +12,10 @@ _____________________________________
 TODO:
 
 %TOMORROW%
-- CB: On back card use PanGestureHandler, so you can scroll down if the description is more than the card.
-- CF/CB: Make the NextCard opacity = 0 when flipping the card animation occurs.
+- CB: Fade animation when scrolling.
 
 - CF: Fix so that you can swipe instantly after the next card ?
 - Refactoring and splitting components into smaller ones. (SwipeLogic specifically)
-- Design adjustment
 
 
 
@@ -60,3 +59,4 @@ DONE:
 - CB: Tapping anywhere on CardBack goes back to FrontCard with Flip Animation
 /Week 3:
 - CB: Can't tap back if you are clicking at the same area as the like and nope labels
+- CB: ScrollView if the description is longer than the Card.

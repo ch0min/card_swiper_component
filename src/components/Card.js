@@ -6,35 +6,34 @@ import CardFront from "./CardFront";
 import CardBack from "./CardBack";
 
 const Card = (props) => {
-    const {rotateFlip} = props
-    const {name, image, bio, desc, age, icon} = props.user
+    const {flipState, user: {name, image, bio, desc, age, icon}} = props
 
     const toggleFlip = () => {
-        rotateFlip.value = rotateFlip.value ? 0 : 1
+        flipState.value = flipState.value ? 0 : 1
         console.log("Button clicked")
     }
 
     const cardFrontFlipStyle = useAnimatedStyle(() => {
-        const rotateValue = interpolate(rotateFlip.value, [0, 1], [0, 180])
+        const flipValue = interpolate(flipState.value, [0, 1], [0, 180])
         return {
             transform: [
                 {
-                    rotateY: withTiming(`${rotateValue}deg`, {duration: 500})
+                    rotateY: withTiming(`${flipValue}deg`, {duration: 500})
                 }
             ],
-            zIndex: rotateFlip.value === 0 ? 1 : -1
+            zIndex: flipState.value === 0 ? 1 : -1
         }
     })
 
     const cardBackFlipStyle = useAnimatedStyle(() => {
-        const rotateValue = interpolate(rotateFlip.value, [0, 1], [180, 360])
+        const flipValue = interpolate(flipState.value, [0, 1], [180, 360])
         return {
             transform: [
                 {
-                    rotateY: withTiming(`${rotateValue}deg`, {duration: 500})
+                    rotateY: withTiming(`${flipValue}deg`, {duration: 500})
                 }
             ],
-            zIndex: rotateFlip.value === 1 ? 1 : -1
+            zIndex: flipState.value === 1 ? 1 : -1
         }
     })
 
@@ -54,7 +53,7 @@ const Card = (props) => {
                 <Animated.View style={[styles.cardBack, cardBackFlipStyle]}>
                     <CardBack
                         desc={desc}
-                        rotateFlip={rotateFlip}
+                        flipState={flipState}
                         toggleFlip={toggleFlip}
                     />
                 </Animated.View>

@@ -17,7 +17,7 @@ const SWIPE_VELOCITY = 1000
 const LABEL_THRESHOLD = 50
 
 const SwipeLogic = (props) => {
-    const {data, renderItem, onSwipeLeft, onSwipeRight, rotateFlip} = props
+    const {data, renderItem, onSwipeLeft, onSwipeRight, flipState} = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const [nextIndex, setNextIndex] = useState(currentIndex + 1)
@@ -58,7 +58,7 @@ const SwipeLogic = (props) => {
     }))
 
     const nextCardOpacityStyle = useAnimatedStyle(() => ({
-        opacity: interpolate(rotateFlip.value,
+        opacity: interpolate(flipState.value,
             [1, 0.5, 1],
             [1, 0, 1])
     }))
