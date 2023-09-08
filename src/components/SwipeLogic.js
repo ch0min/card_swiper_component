@@ -92,6 +92,9 @@ const SwipeLogic = (props) => {
                     damping: 10,
                 })
             } else {
+                const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
+                onSwipe && runOnJS(onSwipe)(currentProfile);
+
                 translateX.value = withSpring(event.velocityX > 0 ? hiddenTranslateX : -hiddenTranslateX,
                     {},
                     () => {
@@ -99,8 +102,6 @@ const SwipeLogic = (props) => {
                     }
                 )
 
-                const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
-                onSwipe && runOnJS(onSwipe)(currentProfile);
                 flipState.value = 0
             }
         }
@@ -111,7 +112,7 @@ const SwipeLogic = (props) => {
         const delayReset = setTimeout(() => {
             translateX.value = 0
             setNextIndex(currentIndex + 1)
-        }, 50)
+        }, 30)
 
         return () => {
             clearTimeout(delayReset)
@@ -177,7 +178,6 @@ const styles = StyleSheet.create({
         top: 40,
         right: "20%",
         zIndex: 2,
-        // elevation: 1   // maybe on ios or android?
     },
     nope: {
         width: 125,
@@ -187,7 +187,6 @@ const styles = StyleSheet.create({
         top: 40,
         left: "15%",
         zIndex: 2,
-        // elevation: 1   // maybe on ios or android?
     }
 })
 

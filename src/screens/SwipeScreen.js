@@ -3,7 +3,6 @@ import {StyleSheet, View, Text} from "react-native";
 
 import users from "../../assets/data/users";
 import Card from "../components/Card";
-
 import SwipeLogic from "../components/SwipeLogic";
 import LoadingSpinner from "../components/LoadingSpinner";
 import {useSharedValue} from "react-native-reanimated";

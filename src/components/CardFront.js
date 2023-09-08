@@ -1,7 +1,6 @@
 import React from "react";
-import {StyleSheet, View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator} from "react-native";
+import {StyleSheet, View, Text, Image, ImageBackground, TouchableOpacity} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
-
 
 const CardFront = ({name, image, bio, age, icon, toggleFlip}) => {
 

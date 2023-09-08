@@ -12,8 +12,6 @@ _____________________________________
 TODO:
 
 %TOMORROW%
-- CF: Fix so that you can swipe instantly after the next card ?
-- Refactoring and splitting components into smaller ones. (SwipeLogic specifically)
 
 
 
@@ -22,6 +20,7 @@ MAYBES?:
 - Card Stack Effect?
 - CB: Fade animation when scrolling.
 - CB: ScrollView if the description is longer than the Card.
+- CF: Fix so that you can swipe instantly after the next card ( hard )
 
 
 
@@ -36,6 +35,7 @@ DONE:
 - Made LoadingSpinner component which can be reused. (Intentionally made it 1 sec delay)
 - CF/CB: Make the NextCard opacity = 0 when flipping the card animation occurs, so you won't see the NextCard between the animation.
 - CF/CB: When swiping on CardBack, reset back to FrontCard
+- Refactoring and splitting components into smaller ones.
 
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, View, ScrollView, Text, ImageBackground} from "react-native";
+import {StyleSheet, View, Text, ImageBackground} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 
 const CardBack = ({desc, flipState, toggleFlip}) => {
@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#bae9da",
 
-        shadowColor: "#000000",   // for ios
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 10,
+        // shadowColor: "#000000",   // for ios
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 5,
+        // },
+        // shadowOpacity: 1,
+        // shadowRadius: 10,
         overflow: "hidden"
     },
     cardBackImageWrapper: {
@@ -77,8 +77,6 @@ const styles = StyleSheet.create({
         lineHeight: 25,
         fontWeight: "bold",
     },
-
-
 })
 
 export default CardBack
