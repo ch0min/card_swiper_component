@@ -101,6 +101,7 @@ const SwipeLogic = (props) => {
 
                 const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
                 onSwipe && runOnJS(onSwipe)(currentProfile);
+                flipState.value = 0
             }
         }
     })

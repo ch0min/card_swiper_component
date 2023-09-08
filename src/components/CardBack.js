@@ -2,7 +2,6 @@ import React from "react";
 import {StyleSheet, View, ScrollView, Text, ImageBackground} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 
-
 const CardBack = ({desc, flipState, toggleFlip}) => {
 
     const onSingleTapEvent = (event) => {
@@ -17,15 +16,15 @@ const CardBack = ({desc, flipState, toggleFlip}) => {
         <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
             <View style={styles.cardBack}>
                 <View style={styles.cardBackImageWrapper}>
-
-                    <Text style={styles.headingBack}>Facts</Text>
-                    <ScrollView>
-                        <Text style={styles.descCardBack}>{desc}</Text>
-                    </ScrollView>
                     <ImageBackground
                         source={require("../../assets/images/klimakampen-logo.png")}
                         style={styles.cardBackImage}>
                     </ImageBackground>
+                    <Text style={styles.headingBack}>Facts</Text>
+                    <View>
+                        <Text style={styles.descCardBack}>{desc}</Text>
+                    </View>
+
                 </View>
             </View>
         </TapGestureHandler>
@@ -53,17 +52,18 @@ const styles = StyleSheet.create({
         overflow: "hidden"
     },
     cardBackImageWrapper: {
-        padding: 10,
         alignItems: "center",
+        padding: 10,
     },
     cardBackImage: {
+        position: "absolute",
+        alignSelf: "flex-start",
         width: 100,
         height: 100,
-        top: 75,
         borderRadius: 20,
     },
     headingBack: {
-        marginTop: 15,
+        marginTop: 55,
         fontSize: 20,
         color: "#bae9da",
         fontWeight: "bold",

@@ -7,7 +7,7 @@ export default [
         bio: "I will be the semicolons to your code",
         desc: "Gates was born and raised in Seattle. In 1975, he and Allen founded Microsoft in Albuquerque, New Mexico. " +
             "It later became the world's largest personal computer software company. " +
-            "Gates led the company as its chairman and chief executive officer until stepping down as CEO in January 2000",
+            "Gates led the company as its chairman and chief executive officer until stepping down as CEO in January 2000.",
         age: 67,
         icon: require("../../assets/icons/age.png"),
         testbg: "red"

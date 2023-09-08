@@ -10,7 +10,6 @@ const Card = (props) => {
 
     const toggleFlip = () => {
         flipState.value = flipState.value ? 0 : 1
-        console.log("Button clicked")
     }
 
     const cardFrontFlipStyle = useAnimatedStyle(() => {
