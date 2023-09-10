@@ -10,8 +10,7 @@ _____________________________________
 
 
 TODO:
-
-%TOMORROW%
+CF: Make 2 buttons for swiping left and right.
 
 
 
