@@ -1,37 +1,33 @@
 import React from "react";
-import {StyleSheet, View, Text} from "react-native";
+import {StyleSheet, View} from "react-native";
 
-import users from "../../assets/data/users";
+import cards from "../../assets/data/cards";
 import Card from "../components/Card";
 import SwipeLogic from "../components/SwipeLogic";
-import LoadingSpinner from "../components/LoadingSpinner";
 import {useSharedValue} from "react-native-reanimated";
 
 
 const SwipeScreen = () => {
     const flipState = useSharedValue(0)
 
-    const onSwipeLeft = (user) => {
-        console.warn("Swipe Left", user.name)   // write here for backend data logic
+    const onSwipeLeft = (card) => {
+        console.warn("Swipe Left")   // write here for backend data logic
     }
-    const onSwipeRight = (user) => {
-        console.warn("Swipe Right", user.name) // write here for backend data logic
+    const onSwipeRight = (card) => {
+        console.warn("Swipe Right") // write here for backend data logic
     }
 
     return (
-        <LoadingSpinner>
             <View style={styles.pageContainer}>
-                <Text style={styles.heading}>What's on your mind</Text>
                 <SwipeLogic
-                    data={users}
-                    renderItem={({item}) => <Card user={item} flipState={flipState}/>}
+                    data={cards}
+                    renderItem={({card}) => <Card card={card} flipState={flipState}/>}
                     onSwipeLeft={onSwipeLeft}
                     onSwipeRight={onSwipeRight}
                     flipState={flipState}
                 />
             </View>
-        </LoadingSpinner>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -40,7 +36,7 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#5ba970",
+        backgroundColor: "#F5F5F5",
     },
     heading: {
         position: "absolute",

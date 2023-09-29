@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import {ActivityIndicator, StyleSheet, View, Text, TouchableOpacity, ImageBackground, Image} from "react-native";
-import {TapGestureHandler, State} from "react-native-gesture-handler";
-import {Ionicons} from "@expo/vector-icons";
+import CardIcons from "../components/CardIcons";
+
+
 
 const TestingScreen = () => {
     return (
         <View>
+            <CardIcons name="Waste" size={50} color="#F5F5F5" style={styles.cardIcon} />
         </View>
 
 
@@ -15,7 +17,10 @@ const TestingScreen = () => {
 
 
 const styles = StyleSheet.create({
-
+    cardIcon: {
+        width: 100,
+        height: 100
+    }
 
 
 });

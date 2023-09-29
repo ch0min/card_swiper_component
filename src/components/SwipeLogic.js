@@ -9,20 +9,16 @@ import Animated, {
 } from "react-native-reanimated";
 import {PanGestureHandler} from "react-native-gesture-handler";
 
-import Like from "../../assets/images/LIKE2.png";
-import Nope from "../../assets/images/nope.png";
-
 const ROTATION = 60
 const SWIPE_VELOCITY = 1000
-const LABEL_THRESHOLD = 50
 
 const SwipeLogic = (props) => {
     const {data, renderItem, onSwipeLeft, onSwipeRight, flipState} = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const [nextIndex, setNextIndex] = useState(currentIndex + 1)
-    const currentProfile = data[currentIndex]
-    const nextProfile = data[nextIndex]
+    const currentCard = data[currentIndex]
+    const nextCard = data[nextIndex]
 
     const {width: screenWidth} = useWindowDimensions()
     const hiddenTranslateX = 2 * screenWidth
@@ -34,7 +30,7 @@ const SwipeLogic = (props) => {
     ) + "deg")               // main points: -60deg  0deg  60deg
 
 
-    const cardStyle = useAnimatedStyle(() => ({
+    const cardAnim = useAnimatedStyle(() => ({
         transform: [{
             translateX: translateX.value
         },
@@ -44,7 +40,7 @@ const SwipeLogic = (props) => {
         ]
     }))
 
-    const nextCardStyle = useAnimatedStyle(() => ({
+    const nextCardAnim = useAnimatedStyle(() => ({
         transform: [
             {
                 scale: interpolate(translateX.value,
@@ -57,27 +53,35 @@ const SwipeLogic = (props) => {
             [1, 0.5, 1]),
     }))
 
-    const nextCardOpacityStyle = useAnimatedStyle(() => ({
+    const nextCardOpacityAnim = useAnimatedStyle(() => ({
         opacity: interpolate(flipState.value,
             [1, 0.5, 1],
             [1, 0, 1])
     }))
 
-    const likeStyle = useAnimatedStyle(() => ({
-        opacity: interpolate(translateX.value,
-            [LABEL_THRESHOLD, hiddenTranslateX / 5],
+    const greenAnim = useAnimatedStyle(() => {
+        const opacity = interpolate(translateX.value,
+            [50, hiddenTranslateX / 2],
             [0, 1],
             Extrapolate.CLAMP
-        )
-    }))
+        );
+        return {
+            opacity: opacity,
+            zIndex: opacity > 0.01 ? 1 : -1,
+        }
+    });
 
-    const nopeStyle = useAnimatedStyle(() => ({
-        opacity: interpolate(translateX.value,
-            [-LABEL_THRESHOLD, -hiddenTranslateX / 5],
+    const redAnim = useAnimatedStyle(() => {
+        const opacity = interpolate(translateX.value,
+            [-50, -hiddenTranslateX / 2],
             [0, 1],
             Extrapolate.CLAMP
-        )
-    }))
+        );
+        return {
+            opacity: opacity,
+            zIndex: opacity > 0.01 ? 1 : -1,
+        }
+    });
 
     const gestureHandler = useAnimatedGestureHandler({
         onStart: (_, context) => {
@@ -93,7 +97,7 @@ const SwipeLogic = (props) => {
                 })
             } else {
                 const onSwipe = event.velocityX > 0 ? onSwipeRight : onSwipeLeft;
-                onSwipe && runOnJS(onSwipe)(currentProfile);
+                onSwipe && runOnJS(onSwipe)(currentCard);
 
                 translateX.value = withSpring(event.velocityX > 0 ? hiddenTranslateX : -hiddenTranslateX,
                     {},
@@ -122,24 +126,22 @@ const SwipeLogic = (props) => {
 
     return (
         <View style={styles.container}>
-            {nextProfile && (
+
+            {nextCard && (
                 <View style={styles.nextCardContainer}>
-                    <Animated.View style={[styles.animatedCard, nextCardStyle, nextCardOpacityStyle]}>
-                        {renderItem({item: nextProfile})}
+                    <Animated.View style={[styles.animatedCard, nextCardAnim, nextCardOpacityAnim]}>
+                        {renderItem({card: nextCard})}
                     </Animated.View>
                 </View>
             )}
 
-            {currentProfile && (
+            {currentCard && (
                 <PanGestureHandler onGestureEvent={gestureHandler}>
-                    <Animated.View style={[styles.animatedCard, cardStyle]}>
-                        <View style={styles.labelsContainer}>
-                            <Animated.Image source={Like} style={[styles.like, likeStyle]}/>
-                        </View>
-                        <View style={styles.labelsContainer}>
-                            <Animated.Image source={Nope} style={[styles.nope, nopeStyle]}/>
-                        </View>
-                        {renderItem({item: currentProfile})}
+                    <Animated.View style={[styles.animatedCard, cardAnim]}>
+                        <Animated.View style={[styles.green, greenAnim]}></Animated.View>
+                        <Animated.View style={[styles.red, redAnim]}></Animated.View>
+
+                        {renderItem({card: currentCard})}
                     </Animated.View>
                 </PanGestureHandler>
             )}
@@ -166,28 +168,19 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    labelsContainer: {
-        zIndex: 5,
-        pointerEvents: "none"
+    indicatorContainer: {
+
     },
-    like: {
-        width: 90,
-        height: 100,
-        resizeMode: "contain",
-        position: "absolute",
-        top: 40,
-        right: "20%",
-        zIndex: 2,
+    green: {
+        ...StyleSheet.absoluteFillObject,
+        borderRadius: 20,
+        backgroundColor: "green",
     },
-    nope: {
-        width: 125,
-        height: 125,
-        resizeMode: "contain",
-        position: "absolute",
-        top: 40,
-        left: "15%",
-        zIndex: 2,
-    }
+    red: {
+        ...StyleSheet.absoluteFillObject,
+        borderRadius: 20,
+        backgroundColor: "red",
+    },
 })
 
 export default SwipeLogic

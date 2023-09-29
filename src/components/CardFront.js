@@ -1,115 +1,84 @@
 import React from "react";
-import {StyleSheet, View, Text, Image, ImageBackground, TouchableOpacity} from "react-native";
-import {Ionicons} from "@expo/vector-icons";
+import {StyleSheet, View, Text} from "react-native";
+import {TapGestureHandler, State} from "react-native-gesture-handler";
+import CardIcons from "./CardIcons";
 
-const CardFront = ({name, image, bio, age, icon, toggleFlip}) => {
+const CardFront = ({heading, icon, subheading, points, bgColor, flipState, toggleFlip}) => {
+
+    const onSingleTapEvent = (event) => {
+        if (event.nativeEvent.state === State.ACTIVE) {
+            if (flipState.value === 0) {
+                toggleFlip()
+            }
+        }
+    }
 
     return (
-        <View>
-            <TouchableOpacity style={styles.buttonInfo} onPress={toggleFlip}>
-                <Ionicons name="information-circle" style={styles.buttonInfoIcon}/>
-            </TouchableOpacity>
-
-                <ImageBackground
-                    source={image}
-                    style={styles.cardFrontImage}
-                >
-                    <Text style={styles.subheadingFrontLeft}>
-                        <Image source={icon}
-                               style={styles.subheadingIcon}/> {age}y/o
-                    </Text>
-                    <View style={styles.centerCircle}>
-                        <Ionicons name="trash-outline" style={styles.centerIcon}/>
+        <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
+            <View style={[styles.cardFront, {backgroundColor: bgColor}]}>
+                <Text style={styles.headingFront}>{heading}</Text>
+                <CardIcons name={icon} size={250} style={styles.cardIcon}/>
+                <View style={styles.cardDetails}>
+                    <Text style={styles.subheading}>{subheading}</Text>
+                    <View style={styles.cardPointsDetails}>
+                        <Text style={styles.points}>{points}</Text>
+                        <Text style={styles.pointsText}>points</Text>
                     </View>
-                    <View style={styles.cardFrontBox}>
-                        <Text style={styles.headingFront}>{name}</Text>
-                        <Text style={styles.descFront}>{bio}</Text>
-                    </View>
-                </ImageBackground>
-
-
-        </View>
-    )
+                </View>
+            </View>
+        </TapGestureHandler>
+    );
 }
 
 const styles = StyleSheet.create({
     /* CARD FRONT */
     cardFront: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between",
         width: "100%",
         height: "100%",
         borderRadius: 20,
-        backgroundColor: "#5ba970",
-
-        // shadowColor: "#000000",   // for ios
-        // shadowOffset: {
-        //     width: 0,
-        //     height: 5,
-        // },
-        // shadowOpacity: 1,
-        // shadowRadius: 10,
-        // elevation: 10    // causing problems for nextCard
-    },
-    cardFrontImage: {
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        borderRadius: 20,
-        overflow: "hidden",
-        justifyContent: "flex-end",
-    },
-    cardFrontBox: {
-        height: "25%",
-        padding: 30,
-        alignItems: "center",
-        backgroundColor: "#ffffff",
-    },
-    subheadingFrontLeft: {
-        paddingBottom: 10,
-        fontSize: 20,
-        fontWeight: "bold",
-        color: "#ffffff",
-        top: 75,
-        left: 10,
-    },
-    subheadingIcon: {
-        width: 30,
-        height: 30,
+        padding: 50
     },
     headingFront: {
-        fontSize: 30,
-        color: "#000",
-        fontWeight: "bold"
+        fontFamily: "Rubik_500Medium",
+        textAlign: "center",
+        fontSize: 26,
+        color: "#F5F5F5",
+        fontWeight: "bold",
     },
-    descFront: {
+    cardIcon: {
+        alignSelf: "center",
+    },
+    cardDetails: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    subheading: {
+        fontFamily: "Rubik_500Medium",
         textAlign: "center",
         fontSize: 18,
-        color: "#6a6a6a",
-        lineHeight: 25,
+        color: "#F5F5F5",
     },
-    buttonInfo: {
-        position: "absolute",
-        top: 5,
-        right: 10,
-        zIndex: 2
+    cardPointsDetails: {
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 10,
     },
-    buttonInfoIcon: {
-        fontSize: 44,
-        color: "#ffffff"
+    points: {
+        fontFamily: "Rubik_500Medium",
+        textAlign: "center",
+        fontSize: 40,
+        fontWeight: "bold",
+        color: "#F5F5F5",
     },
-    centerCircle: {
-        width: 75,
-        height: 75,
-        backgroundColor: "#ffffff",
-        borderRadius: 50,
-        alignSelf: "center",
-        top: 30,
-        zIndex: 2
-    },
-    centerIcon: {
-        fontSize: 44,
-        color: "#5ba970",
-        alignSelf: "center",
-        top: 15,
+    pointsText: {
+        fontFamily: "Rubik_500Medium",
+        textAlign: "center",
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#F5F5F5",
     }
 })
 

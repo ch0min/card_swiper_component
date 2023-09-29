@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {StyleSheet, View} from "react-native";
 import Animated, {useAnimatedStyle, interpolate, withTiming} from "react-native-reanimated";
 
@@ -6,11 +6,11 @@ import CardFront from "./CardFront";
 import CardBack from "./CardBack";
 
 const Card = (props) => {
-    const {flipState, user: {name, image, bio, desc, age, icon}} = props
+    const {flipState, card: {heading, icon, subheading, points, requirement, climate, inspiration, synergy, bgColor, boxColor}} = props
 
     const toggleFlip = () => {
-        flipState.value = flipState.value ? 0 : 1
-    }
+        flipState.value = flipState.value ? 0 : 1;
+    };
 
     const cardFrontFlipStyle = useAnimatedStyle(() => {
         const flipValue = interpolate(flipState.value, [0, 1], [0, 180])
@@ -22,7 +22,7 @@ const Card = (props) => {
             ],
             zIndex: flipState.value === 0 ? 1 : -1
         }
-    })
+    });
 
     const cardBackFlipStyle = useAnimatedStyle(() => {
         const flipValue = interpolate(flipState.value, [0, 1], [180, 360])
@@ -34,30 +34,39 @@ const Card = (props) => {
             ],
             zIndex: flipState.value === 1 ? 1 : -1
         }
-    })
-
+    });
 
     return (
         <View style={styles.cardContainer}>
             <Animated.View style={[styles.cardFront, cardFrontFlipStyle]}>
                 <CardFront
-                        name={name}
-                        image={image}
-                        bio={bio}
-                        age={age}
-                        icon={icon}
-                        toggleFlip={toggleFlip}
-                    />
-                </Animated.View>
-                <Animated.View style={[styles.cardBack, cardBackFlipStyle]}>
-                    <CardBack
-                        desc={desc}
-                        flipState={flipState}
-                        toggleFlip={toggleFlip}
-                    />
-                </Animated.View>
+                    heading={heading}
+                    icon={icon}
+                    subheading={subheading}
+                    points={points}
+                    bgColor={bgColor}
+                    flipState={flipState}
+                    toggleFlip={toggleFlip}
+                />
+            </Animated.View>
+            <Animated.View style={[styles.cardBack, cardBackFlipStyle]}>
+                <CardBack
+                    heading={heading}
+                    subheading={subheading}
+                    points={points}
+                    requirement={requirement}
+                    climate={climate}
+                    inspiration={inspiration}
+                    synergy={synergy}
+                    bgColor={bgColor}
+                    boxColor={boxColor}
+                    flipState={flipState}
+                    toggleFlip={toggleFlip}
+                />
+
+            </Animated.View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -66,7 +75,6 @@ const styles = StyleSheet.create({
         height: "100%",
         justifyContent: "center",
         alignItems: "center",
-        zIndex: 1,
     },
     cardFront: {
         width: "100%",
@@ -77,7 +85,7 @@ const styles = StyleSheet.create({
     cardBack: {
         width: "100%",
         height: "100%",
-        backfaceVisibility: "hidden"
+        backfaceVisibility: "hidden",
     },
     buttonInfo: {
         position: "absolute",

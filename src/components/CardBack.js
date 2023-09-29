@@ -1,8 +1,44 @@
-import React from "react";
-import {StyleSheet, View, Text, ImageBackground} from "react-native";
+import React, {useState} from "react";
+import {StyleSheet, View, Text, TouchableOpacity, FlatList} from "react-native";
 import {TapGestureHandler, State} from "react-native-gesture-handler";
 
-const CardBack = ({desc, flipState, toggleFlip}) => {
+import CardIcons from "./CardIcons";
+
+const CardBack = ({
+                      heading,
+                      subheading,
+                      points,
+                      requirement,
+                      climate,
+                      inspiration,
+                      synergy,
+                      bgColor,
+                      boxColor,
+                      flipState,
+                      toggleFlip
+                  }) => {
+
+    const [chooseIcon, setChooseIcon] = useState(0);
+
+    const iconList = [
+        {name: "Requirement"},
+        {name: "Climate"},
+        {name: "Inspiration"},
+        {name: "Synergy"}
+    ];
+
+    const renderItem = ({item, index}) => (
+        <TouchableOpacity style={styles.boxButton} onPress={() => setChooseIcon(index)}>
+            <View style={[styles.iconIndicator,
+                {
+                    borderColor: chooseIcon === index ? "whitesmoke" : "transparent"
+                }]}
+            >
+                <CardIcons name={item.name}/>
+            </View>
+        </TouchableOpacity>
+    )
+
 
     const onSingleTapEvent = (event) => {
         if (event.nativeEvent.state === State.ACTIVE) {
@@ -12,20 +48,38 @@ const CardBack = ({desc, flipState, toggleFlip}) => {
         }
     }
 
+    const preventPropagation = (event) => {
+        event.stopPropagation();
+    }
+
     return (
         <TapGestureHandler onHandlerStateChange={onSingleTapEvent}>
-            <View style={styles.cardBack}>
-                <View style={styles.cardBackImageWrapper}>
-                    <ImageBackground
-                        source={require("../../assets/images/klimakampen-logo.png")}
-                        style={styles.cardBackImage}>
-                    </ImageBackground>
-                    <Text style={styles.headingBack}>Facts</Text>
-                    <View>
-                        <Text style={styles.descCardBack}>{desc}</Text>
-                    </View>
+            <View style={[styles.cardBack, {backgroundColor: bgColor}]}>
+                <Text style={styles.headingBack}>{heading}</Text>
+                <Text style={styles.desc}>Separate waste every day in 8 categories</Text>
 
+                <TapGestureHandler onHandlerStateChange={preventPropagation}>
+                    <View style={[styles.boxDetails, {backgroundColor: boxColor}]}>
+                        <View style={styles.boxButtons}>
+                            <FlatList
+                                data={iconList}
+                                renderItem={renderItem}
+                                keyExtractor={(item, index) => index.toString()}
+                                horizontal
+                                showsHorizontalScrollIndicator={false}
+                            />
+                        </View>
+                    </View>
+                </TapGestureHandler>
+
+                <View style={styles.cardDetails}>
+                    <Text style={styles.subheading}>{subheading}</Text>
+                    <View style={styles.cardPointsDetails}>
+                        <Text style={styles.points}>{points}</Text>
+                        <Text style={styles.pointsText}>points</Text>
+                    </View>
                 </View>
+
             </View>
         </TapGestureHandler>
 
@@ -35,47 +89,88 @@ const CardBack = ({desc, flipState, toggleFlip}) => {
 const styles = StyleSheet.create({
     /* CARD BACK */
     cardBack: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between",
         width: "100%",
         height: "100%",
         borderRadius: 20,
-        backgroundColor: "#34aa73",
-        borderWidth: 1,
-        borderColor: "#bae9da",
-
-        // shadowColor: "#000000",   // for ios
-        // shadowOffset: {
-        //     width: 0,
-        //     height: 5,
-        // },
-        // shadowOpacity: 1,
-        // shadowRadius: 10,
-        overflow: "hidden"
-    },
-    cardBackImageWrapper: {
-        alignItems: "center",
-        padding: 10,
-    },
-    cardBackImage: {
-        position: "absolute",
-        alignSelf: "flex-start",
-        width: 100,
-        height: 100,
-        borderRadius: 20,
+        padding: 50
     },
     headingBack: {
-        marginTop: 55,
-        fontSize: 20,
-        color: "#bae9da",
+        fontFamily: "Rubik_500Medium",
+        textAlign: "center",
+        fontSize: 26,
+        color: "#F5F5F5",
         fontWeight: "bold",
-        textTransform: "uppercase",
     },
-    descCardBack: {
-        margin: 20,
+    desc: {
+        marginTop: 10,
+        marginHorizontal: "5%",
+        fontFamily: "Rubik_500Medium",
         textAlign: "center",
         fontSize: 18,
-        color: "#7fccac",
-        lineHeight: 25,
+        color: "#F5F5F5",
+    },
+    boxDetails: {
+        alignSelf: "center",
+        width: 300,
+        height: 170,
+        marginTop: "15%",
+        marginBottom: "25%",
+        borderRadius: 25,
+
+        shadowColor: "#6A6A6A",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.2,
+        elevation: 1
+    },
+    boxButtons: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    boxButton: {
+        alignSelf: "center",
+        marginTop: 20,
+    },
+    iconIndicator: {
+        width: 45,
+        height: 35,
+        borderWidth: 2,
+        borderRadius: 25,
+        padding: 5,
+    },
+    cardDetails: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    subheading: {
+        fontFamily: "Rubik_500Medium",
+        textAlign: "center",
+        fontSize: 18,
+        color: "#F5F5F5",
+    },
+    cardPointsDetails: {
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 10,
+    },
+    points: {
+        fontFamily: "Rubik_500Medium",
+        textAlign: "center",
+        fontSize: 40,
         fontWeight: "bold",
+        color: "#F5F5F5",
+    },
+    pointsText: {
+        fontFamily: "Rubik_500Medium",
+        textAlign: "center",
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#F5F5F5",
     },
 })
 
